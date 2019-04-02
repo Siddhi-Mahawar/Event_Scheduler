@@ -81,8 +81,8 @@ form,.content{
     width: 100%;
     background-size: cover;
       /* Add the blur effect */
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
 
 }
 html,body{
