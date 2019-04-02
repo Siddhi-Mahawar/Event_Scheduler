@@ -1,0 +1,114 @@
+.modal-container
+{
+    width:100%;
+    height:100%;
+    background: rgba(2,70, 88, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition:0ms ease;
+}
+
+.modal-container:target
+{
+    opacity:1;
+    pointer-events: auto;
+    transition: 500ms 0ms 0ms 0ms ease;
+}
+
+.modal-container >div
+{
+    transform:translate(0px,-5px);
+    transition:all 500ms ease;
+}
+
+.modal-container:target >div
+{
+    transform: translate(0px , 0px);
+}
+
+.modal{
+    width: 350px;
+    height: 300px;
+    margin: auto;
+    position: absolute;
+    top:0px; bottom: 0px;
+    right: 0px; left:0px;
+    background: black;
+    border: 2px solid#222;
+    padding: 20px;
+    box-shadow: 0px 0px 20px 5px black;
+
+}
+
+.modal_heading
+{
+    width: 100%;
+    display: block;
+    height: 60px;
+    margin-bottom: 30px;
+    color: yellow;
+    padding: 10x;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 20pt;
+    font-family: big john;
+    border-bottom: 2px solid #fefefe;
+}
+#venuename
+{
+    align-content: center;
+    margin-left: 35%;
+    padding-left: 100%;
+}
+.details{
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    height:30px;
+    border: 0px;
+    font-family: georgia;
+    font-size: 11pt;
+    text-align: center;
+}
+
+.btnEvent{
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    height:40px;
+    border: 0px;
+    font-family: georgia;
+    text-align: center;
+    width: 95%;
+    background: red;
+    color: white;
+    font-size: 10pt;
+    margin-top: 10px;
+}
+
+.btnEvent:hover
+{
+    background: #b80000;
+}
+
+.close
+{
+    color: white;
+    position: absolute;
+    border: 2px solid #333;
+    padding: 7px 9px 11px 9px;
+    font-family:big john;
+    background: black;
+    text-decoration: none;
+    top: -20px;
+    right: -20px;
+    border-radius: 50%;
+    transition: background 500ms;
+}
+
+.close:hover
+{
+    background: #444;
+    cursor: pointer;
+}
