@@ -1,0 +1,91 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+body{   
+    font-size:120%;
+
+}
+.header{
+    color: #23415C;
+    text-align:center;
+    padding: 10px;
+    
+}
+form,.content{
+    margin-top: 30pc;
+    width:30%;
+    margin:0px auto;
+    padding:20px;
+    border:1px solid #B0C4DE;
+    background: transparent;  
+    font-family: sans-serif;
+    font-size: 1pc;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+
+}
+.input-group{
+    margin:10px 0px 10px 0px;
+}
+.input-group label{
+    display:block;
+    text-align: left;
+    margin:3px;
+}
+.input-group input{
+    height:40px;
+    width:100%;
+    padding:5px 10px;
+    font-size:16px;
+    border-radius: 4px;
+    border:1px solid #6666ff;
+}
+.btn{
+    padding:10px;
+    font-size: 15px ;
+    color:white;
+    background:#23415C;
+    border:lightblue;
+    width: 49%;
+    text-align: center;
+}
+.btn:hover 
+{
+    color: lightcyan;
+}
+
+.navbar
+{
+    background-color: #23415C;
+    padding: 1% 0; 
+    font-size: 2ch;
+}
+.navbar-brand
+{
+    min-height: 55px;
+    padding: 0 15px 5px;
+}
+.navbar-default .navbar-nav li a {
+    color: ghostwhite;
+}
+.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav li a.active {
+    color: white;
+}
+#home
+{
+    background: url(home/Slider-v1.jpg ) no-repeat center center fixed;
+    padding-top: 5pc;
+    display: table;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    background-size: cover;
+      /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
