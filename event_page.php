@@ -21,6 +21,15 @@ if(isset($_POST["upload"]))
         // echo '<script>alert("Image Inserted into database")</script>';
     }
 }
+if(isset($_POST['desc']))
+{
+    $file = addslashes(file_get_contents($_FILES["description"]["tmp_name"]));
+    $query = "UPDATE event SET eventdescdoc='$file' where eventid=$eventid";
+    if(mysqli_query($con,$query))
+    {
+        echo '<script>alert("Image Inserted into database")</script>';
+    }
+}
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -116,6 +125,23 @@ if(isset($_POST["upload"]))
                     }
                     ?>
                     <br />
+                    <?php
+                        $query = "SELECT eventdescdoc FROM event where eventid=$eventid";
+                        $result = mysqli_query($con,$query);
+                        $row=mysqli_fetch_array($result);
+                        if(mysqli_num_rows($result)!=1 || $row['eventdescdoc']==null)
+                        {
+                            echo '
+                                <img src="data:image/jpeg;base64,'.base64_encode($row['eventdescdoc']).'" class="cover_image" />
+                            ';
+                        }
+                        ?>
+                    <form method="post" enctype="multipart/form-data">
+                        <a class="fa fa-camera" id="desc_upload"></a>
+                        <input type="file" name="description" id="description" style="display:none" onchange="Description()" />
+                        <script>$('#desc_upload').click(function(){ $('#description').trigger('click'); });</script>
+                        <input type="submit" name="desc" id="desc" value="Desc" style="display:none"/>
+                    </form>
                     <h2 style="font-family:'Satisfy', cursive;">Event Timing:</h2>
                     <?php
                     $query = "SELECT eventstart,eventend FROM event where eventid=$eventid";
@@ -260,6 +286,10 @@ function Profile()
 {
     $('#upload').trigger('click');
 }
+function Description()
+{
+    $('#desc').trigger('click');
+}
 $(document).ready(function(){
     $('#insert').click(function(){
         var image_name=$('#image').val();
@@ -297,6 +327,28 @@ $(document).ready(function(){
             {
                 alert("Invalid Image File");
                 $('#upload').val('');
+                return false;
+            }
+            else    
+                return true;
+        }
+    });
+    $('#desc').click(function(){
+        var image_name=$('#description').val();
+        // alert(image_name);
+        if(image_name == '')
+        {
+            alert("Please Select File :");
+            return false;
+        }
+        else
+        {
+            var extension=$('#description').val().split('.').pop().toLowerCase();
+            // alert(extension);
+            if(jQuery.inArray(extension,['docs','pdf','docx']) == -1)
+            {
+                alert("Invalid Image File");
+                $('#desc').val('');
                 return false;
             }
             else    
