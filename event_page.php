@@ -23,11 +23,22 @@ if(isset($_POST["upload"]))
 }
 if(isset($_POST['desc']))
 {
-    $file = addslashes(file_get_contents($_FILES["description"]["tmp_name"]));
-    $query = "UPDATE event SET eventdescdoc='$file' where eventid=$eventid";
+    $name= $_FILES["description"]["name"];
+    $dot='.';
+    $tmp_name= $_FILES["description"]["tmp_name"];
+    $position= strpos($name, "."); 
+    $fileextension= substr($name, $position);
+    $path= 'Uploads/files/';
+    if (!empty($name)){
+        if (move_uploaded_file($tmp_name, $path.$eveid.$fileextension)) {
+            // echo 'Uploaded!';
+        }
+    }
+    // $file = addslashes(file_get_contents($_FILES["description"]["tmp_name"]));
+     $query = "UPDATE event SET eventdescdoc='$path$eveid$fileextension' where eventid=$eventid";
     if(mysqli_query($con,$query))
     {
-        echo '<script>alert("Image Inserted into database")</script>';
+        // echo '<script>alert("Image Inserted into database")</script>';
     }
 }
 ?>
@@ -131,13 +142,20 @@ if(isset($_POST['desc']))
                         $row=mysqli_fetch_array($result);
                         if(mysqli_num_rows($result)!=1 || $row['eventdescdoc']==null)
                         {
-                            echo '
-                                <img src="data:image/jpeg;base64,'.base64_encode($row['eventdescdoc']).'" class="cover_image" />
-                            ';
+                            ?>
+                            <h4 >No file uploaded</h4>
+                            <?php
+                        }
+                        else
+                        {   
+                            $add=$row['eventdescdoc'];
+                            ?>
+                            <a href=<?php echo $add; ?>><h4>Event Description</h4></a>;
+                            <?php
                         }
                         ?>
                     <form method="post" enctype="multipart/form-data">
-                        <a class="fa fa-camera" id="desc_upload"></a>
+                        <a class="fa fa-upload" id="desc_upload"></a>
                         <input type="file" name="description" id="description" style="display:none" onchange="Description()" />
                         <script>$('#desc_upload').click(function(){ $('#description').trigger('click'); });</script>
                         <input type="submit" name="desc" id="desc" value="Desc" style="display:none"/>
