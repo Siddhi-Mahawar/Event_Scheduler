@@ -5,8 +5,19 @@ extract($_SESSION);
 $eventid=$eveid;
 if(isset($_POST["insert"]))
 {
-    $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-    $query = "UPDATE event SET eventcover='$file' where eventid=$eventid";
+    $name= $_FILES["image"]["name"];
+    $dot='.';
+    $tmp_name= $_FILES["image"]["tmp_name"];
+    $position= strpos($name, "."); 
+    $fileextension= substr($name, $position);
+    $path= 'Uploads/cover/';
+    if (!empty($name)){
+        if (move_uploaded_file($tmp_name, $path.$eveid.$fileextension)) {
+            // echo 'Uploaded!';
+        }
+    }
+    // $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
+    $query = "UPDATE event SET eventcover='$path$eveid$fileextension' where eventid=$eventid";
     if(mysqli_query($con,$query))
     {
         // echo '<script>alert("Image Inserted into database")</script>';
@@ -14,8 +25,19 @@ if(isset($_POST["insert"]))
 }
 if(isset($_POST["upload"]))
 {
-    $file = addslashes(file_get_contents($_FILES["profile"]["tmp_name"]));
-    $query = "UPDATE event SET eventimage='$file' where eventid=$eventid";
+    $name= $_FILES["profile"]["name"];
+    $dot='.';
+    $tmp_name= $_FILES["profile"]["tmp_name"];
+    $position= strpos($name, "."); 
+    $fileextension= substr($name, $position);
+    $path= 'Uploads/profile/';
+    if (!empty($name)){
+        if (move_uploaded_file($tmp_name, $path.$eveid.$fileextension)) {
+            // echo 'Uploaded!';
+        }
+    }
+    // $file = addslashes(file_get_contents($_FILES["profile"]["tmp_name"]));
+    $query = "UPDATE event SET eventcover='$path$eveid$fileextension' where eventid=$eventid";
     if(mysqli_query($con,$query))
     {
         // echo '<script>alert("Image Inserted into database")</script>';
@@ -135,7 +157,6 @@ if(isset($_POST['desc']))
                         ';
                     }
                     ?>
-                    <br />
                     <?php
                         $query = "SELECT eventdescdoc FROM event where eventid=$eventid";
                         $result = mysqli_query($con,$query);
