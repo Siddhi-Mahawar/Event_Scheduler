@@ -46,7 +46,8 @@
                             <li><a href="requests.php" title="Invitations">Invites</a></li>
                             <li><a href="" title="About">About</a></li>
                             <li><a href="" title="Contact">Contact</a></li>
-                        
+                            <li><a href="publicevents.php" title="Contact">Public Events</a></li>
+                            <li><a href="eventreq.php" title="Contact">Requests</a></li>
                         </ul>
                     </div>
                 </div>
