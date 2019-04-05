@@ -1,7 +1,10 @@
-<?php 
-session_start();
+<?php
+session_start(); 
 include('config.php');
-	if(isset($_SESSION['logincust']))
+extract($_POST);
+extract($_GET);
+
+if(isset($_SESSION['logincust']))
 	{
 		$ema= $_SESSION['email'];
 		$pass =$_SESSION['first_name'];
@@ -16,113 +19,122 @@ include('config.php');
 		$_SESSION['user']=$ema;
 		header('Location: home.php');
 	}
-		
-	if(isset($_POST['logoutsr']))
+
+if(isset($submit))
+{	
+
+if($user==1)
 	{
-		session_unset();
-		echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-	}
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-	<style>
-		body {
-  padding-top: 70px;
-  padding-bottom: 30px;
-}
-
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
-}
-
-.theme-showcase > p > .btn {
-  margin: 5px 0;
-}
-
-.theme-showcase .navbar .container {
-  width: auto;
-}
+$password=md5($password);
+	$que=mysqli_query($con,"select email,pass,status from user where email='$email_id' and pass='$password'");
 	
-.panel {
-    margin-bottom: 20px;
-    background-color: #fff;
-border: 1px solid #F2F3F3;
-   }
+	 $row= mysqli_num_rows($que);
+	 if($row)
+	 {
+	 	$status=mysqli_fetch_assoc($que);
+		if($status['status']==1)
+		{
+		echo "<span class='glyphicon glyphicon-exclamation-sign' style='color:red'></span> <font color='red'>Your account is deactivated by admin</font>";
+		}
+		else
+		{
+		$_SESSION['user']=$email_id;
+		echo "<script>window.location='home.php'</script>";
+	 	} 
+	}
+	 else
+	 {
+	 echo "<span class='glyphicon glyphicon-exclamation-sign' style='color:red'></span> <font color='red'>Invalid User Login</font>";
+	 }
+	}
 
-*{margin:0px}
+
+//for Admin
+	if($user==2)
+	{
+	$password=md5($password);
+	$que=mysqli_query($con,"SELECT `email`, `pass` FROM `admin` WHERE email='$email_id' and pass='$password'");
+	
+	 $row= mysqli_num_rows($que);
+	 if($row)
+	 {
+		$_SESSION['admin']=$email_id;
+		echo "<script>window.location='admin'</script>";
+	}
+	else
+	 {
+		echo "<span class='glyphicon glyphicon-exclamation-sign' style='color:red'></span> <font color='red'>Wrong Admin login details</font>";
+	 }
+	}
+//Admin end
 
 
-</style>
+	
+}
+?>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-    <title>Event Scheduler</title>
+<!DOCTYPE html>
+<html>
+<head>
+       <title>User Registration</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <link rel ="stylesheet" type ="text/css" href="style.css">
+       <link href="./home/css" rel="stylesheet">
+    <link href="./home/css(1)" rel="stylesheet">
+    <link href="./home/css(2)" rel="stylesheet">
+    <!-- CSS LIBRARY -->
+    <link rel="stylesheet" type="text/css" href="./home/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./home/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="./home/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="./home/gallery.css">
+    <link rel="stylesheet" type="text/css" href="./home/vit-gallery.css">
+    <link rel="shortcut icon" type="text/css" href="./home/favicon.png">
+    <link rel="stylesheet" type="text/css" href="./home/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="./home/bootstrap-datepicker.css">
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" href="./home/styles.css">
+<script type="text/javascript" charset="UTF-8" src="./home/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./home/util.js.download"></script></head>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-
-   
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-   
 </head>
 
-  <body role="document">
+<body >
+ 
+       <div id="home">
+        <div style="padding-top: 5pc">
+	<form  method="post" >
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" >
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        
-        <a class="navbar-brand" href="index.php" >Event Scheduler</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-         
-		   <ul class="nav navbar-nav navbar-right">
-                       
-					<li>
-			<a href="index.php?option=login"  >
-			<span class="glyphicon glyphicon-lock"></span>Sign In</a>
-		</li>    
+                <div class="header">
+                        <h2> Login </h2>
+                </div>
+		<div class="input-group">
 			
-		<li>
-			<a  href="#" data-toggle="modal" data-target="#m" style="color:#fff">
-			<span class="glyphicon glyphicon-pencil"></span>Sign Up</a>
-		</li>
-			</ul>			
+                        <input type="email" name="email_id" id="email" size="100%" autocomplete="off" placeholder="Email">
+		</div>
+		<div class="input-group">
+			
+                        <input type="password" name="password" id="pass" size="100%" placeholder="Password">
         </div>
-      </div>
-    </nav>
-	
-	<?php
-			//echo '<a href="loginFB.php"><img src="images/loginfb.png" alt="Login with Facebook" width=222></a><br>';
+        <select class="form-control" name="user" id="user">
+		<option value="1">User</option>
+		<option value="2">Admin</option>
+		
+    	 </select>
+            <div style="padding-top: 5px;">
+              
+                    <button type="submit" name="submit" class="btn " style="font-family: sans-serif;width: 49%" value="Login" name="login" >Login</button>
+               
+                <a href="signup.php">    <button2 type="submit" name="signup" class="btn center" style="font-family: sans-serif ; width: 49%">SignUp</button2>
+                </a>
+				
+            </div>
+            <div class="input-group" style="text-align: right">
+                <p ><a href="forgot.php">Forgot password?</a></p>               
+            </div>
+			<?php
 			include_once 'loginG.php';
 			if(isset($_GET['code'])){
 				$gClient->authenticate($_GET['code']);
@@ -143,7 +155,7 @@ border: 1px solid #F2F3F3;
 				$_SESSION['logincust']='yes';
 			} else {
 				$authUrl = $gClient->createAuthUrl();
-				$output= '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/loging.png" alt="Sign in with Google+" width=222/></a>';
+				$output= '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><center><img src="images/loging.png" alt="Sign in with Google+" width="80%"/></center></a>';
 			}
 			echo $output;
 			//if(isset($_SESSION[''])
@@ -154,114 +166,10 @@ border: 1px solid #F2F3F3;
 			<?php
 		}
 		?>
-<div class="row">
-<div class="col-lg-12">
-    <div class="container theme-showcase" role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-	  <?php 
-	  @$opt=$_REQUEST['option'];
-	  if($opt!="")
-	  {
-		if($opt=="newuser")
-		{
-		include('registration.php');
-		}
-		
-		if($opt=="login")
-		{
-      // window.location('login.php');
-		include('ajax_login.php');
-		}
-		
-		
-		
-	  }
-	  ?>
-	 
-  </div>
-  
-</div>
-	  
-	  
-	   
-	  
-
-
-
-
-
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-<!-- registration model start -->
-
-
- 
-   		<?php  include('registration.php'); ?>
-
-     <script src="jquery-1.11.2.min.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-	
-
-
-	
-	<script>
-	
-	$(document).ready(function(){
-					$("#err1").hide();
-			$("#save").click(function()
-			{
-		
-					var username =$('#username').val();
-					var email =$('#email12').val();
-					var pass =$('#pass123').val();
-					var mob =$('#mob').val();
-					var gen =$('#gender').val();				
-                   
-
-var dataString = 'username='+ username + '&email='+ email+'&pass='+pass+'&mobile='+mob+'&gen='+gen ;
-//alert(dataString);
-	if(email==''|| pass==''|| username=='' || mob=='' || gen=='')
-   {
-   		$("#err1").show();
-    	$("#err1").html("Fill all the details before you submit. ");
-	}
-	else
-	{
-
-// AJAX Code To Submit Form.
-	$.ajax({
-	type: "POST",
-	url: "ajax_registration.php",
-	data: dataString,
-	cache: false,
-	success: function(result){
-
-	$('#err1').html(result);
-	$("#err1").hide().slideDown();
-			  		setTimeout(function(){
-				  	$("#err1").hide();        
-			  }, 3000);
-			
-	}
-	});
-	}
-return false;
-		
-		
-		});
-	
-	});
-		</script>
-
-
-	</body>
+        </form>
+        </div>
+    </div>    
+    
+    
+ </body>
 </html>
-
