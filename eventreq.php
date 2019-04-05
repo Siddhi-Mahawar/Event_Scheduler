@@ -17,7 +17,11 @@ extract($_SESSION);
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
 </style>
-<div class="container">
+
+<?php
+    include 'header.php';
+    include 'nav.php' ?>
+<div class="container" style="padding-top:7%">
    <div class="row">
                         <table class="table">
                         <tr class="info">
