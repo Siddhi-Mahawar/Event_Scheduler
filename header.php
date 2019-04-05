@@ -20,5 +20,8 @@
     <link rel="stylesheet" type="text/css" href="./home/bootstrap-datepicker.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="./home/styles.css">
+    <script src="Semantic/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+
     <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 <script type="text/javascript" charset="UTF-8" src="./home/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./home/util.js.download"></script></head>

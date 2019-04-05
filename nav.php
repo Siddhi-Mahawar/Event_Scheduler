@@ -38,16 +38,26 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a href="home.php" title="Home">Home</a>
+                                <a href="home.php" title="Home" >Home</a>
                                 
                             </li> 
                             <li><a href="availabilty.php" title="Search By Time">Availability</a></li>
                             <li><a href="venue.php" title="Serach By Venue">Venues</a></li>
                             <li><a href="requests.php" title="Invitations">Invites</a></li>
-                            <li><a href="" title="About">About</a></li>
-                            <li><a href="" title="Contact">Contact</a></li>
-                            <li><a href="publicevents.php" title="Contact">Public Events</a></li>
+                            <!-- <li><a href="" title="About">About</a></li> -->
+                            <!-- <li><a href="" title="Contact">Contact</a></li> -->
+                            <li><a href="publicevents.php" title="Contact">Events</a></li>
                             <li><a href="eventreq.php" title="Contact">Requests</a></li>
+                            
+                            <?php if (isset($user)) {
+                            echo '<li><a href="home.php" title="Home" >'. $user .'</a></li>';
+                            }
+                            else 
+                            echo '<li ><a href="login.php" title="Login" ">Log In</a></li>';
+                            ?>
+                            <?php if(isset($user))
+                            echo '<li ><a href="logout.php" title="Logout" >Log Out</a></li>';?>
+                        
                         </ul>
                     </div>
                 </div>
