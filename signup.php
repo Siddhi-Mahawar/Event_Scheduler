@@ -120,7 +120,7 @@ return false;
 
         <div class="input-group">
 			
-                    <input type="text" name="email" id="email12" size="100%" autocomplete="off" placeholder="Email" required>
+                    <input type="text" name="email" id="email12" size="100%" autocomplete="off" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  required>
 		</div>
                 <div class="input-group">
                     <input type="password" name="pass" id="pas123" size="100%"  placeholder="Password" required>
