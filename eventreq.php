@@ -6,6 +6,7 @@ extract($_SESSION);
     $result=mysqli_query($con,$qu);
     $row=mysqli_fetch_array($result);
     $userid=$row['id'];
+    // echo $userid;
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -21,7 +22,7 @@ extract($_SESSION);
 <?php
     include 'header.php';
     include 'nav.php' ?>
-<div class="container" style="padding-top:7%">
+<div class="container" style="padding-top:10%">
    <div class="row">
                         <table class="table">
                         <tr class="info">
