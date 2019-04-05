@@ -38,7 +38,7 @@ include 'header.php';
     font-size:130%
 }
     .cd{
-        padding-left:5.5%;
+        padding-left:5.0%;
     }
 }
 
@@ -113,7 +113,7 @@ include 'header.php';
                 </div>
                 <div class="card" >
                     <div class="image">
-                    <img src="http://damlr.mnnit.ac.in/assets/images/photo18/img15.jpg">
+                    <img src="https://www.oneperiodic.com/products/photobatch/tutorials/img/scale_original.png">
                     </div>
                     <div class="content">
                     <div class="header">NB 1</div>
@@ -127,7 +127,7 @@ include 'header.php';
                 </div>
                 <div class="card" >
                     <div class="image">
-                    <img src="https://content2.jdmagicbox.com/comp/vidisha/u7/9999p7592.7592.151009164445.k1u7/catalogue/kapoor-marriage-garden-vidisha-wedding-grounds-myh90.jpg?fit=around%7C400%3A400&crop=400%3A400%3B%2A%2C%2A">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Aspect_ratio_4_3_example4.jpg/283px-Aspect_ratio_4_3_example4.jpg">
                     </div>
                     <div class="content">
                     <div class="header">Kapoor Garden</div>
@@ -141,7 +141,7 @@ include 'header.php';
                 </div>
                 <div class="card" >
                     <div class="image">
-                    <img src="https://ui.cltpstatic.com/places/hotels/2356/2356854/images/WhatsApp_Image_2018-10-02_at_5.17.27_PM_w.jpg">
+                    <img src="http://www.fabuloussavers.com/new_wallpaper/5_4_3_2_1_Happy_New_Year_freecomputerdesktopwallpaper_p.jpg">
                     </div>
                     <div class="content">
                     <div class="header">Graces Resort</div>
