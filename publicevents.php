@@ -17,7 +17,10 @@ extract($_SESSION);
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
 </style>
-<div class="container">
+<?php
+    include 'header.php';
+    include 'nav.php' ?>
+<div class="container"  style="padding-top:10%">
    <div class="row">
                         <table class="table">
                         <tr class="info">
@@ -44,13 +47,14 @@ extract($_SESSION);
                             $quer1="SELECT * from user where id=$q";
                             $res2=mysqli_query($con,$quer1);
                             $row1=mysqli_fetch_array($res2);
-                            // echo $p;
-                            // echo $userid;
                             $q1="SELECT * from requests where eventid=$p and userid=$userid";
                             $res3=mysqli_query($con,$q1);
                             // echo mysqli_num_rows($res3);
                             // $row2=mysqli_fetch_array($res3);
                             // echo $row2['userid'];
+                            $row3=mysqli_fetch_array($res3);
+                            if($row3['reqstatus']==2 || $row3['reqstatus']==3)
+                                continue;
                             ?>
                             <tr class="active">
                             <Td><?php echo $row['eventname'];?></Td>
@@ -68,7 +72,7 @@ extract($_SESSION);
                                 </span>
                                 </a>";
                             }
-                            else
+                            else 
                             {
                             echo "<td></td><td><span class='glyphicon glyphicon-ok' style='color:red' aria-hidden='true'>
                             </span></td>";
