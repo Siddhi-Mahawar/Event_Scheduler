@@ -53,7 +53,7 @@ extract($_SESSION);
                             // $row2=mysqli_fetch_array($res3);
                             // echo $row2['userid'];
                             $row3=mysqli_fetch_array($res3);
-                            if($row3['reqstatus']==2 || $row3['reqstatus']==3)
+                            if($row3['reqstatus']==1 || $row3['reqstatus']==2)
                                 continue;
                             ?>
                             <tr class="active">
