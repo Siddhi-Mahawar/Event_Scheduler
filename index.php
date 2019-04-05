@@ -11,6 +11,7 @@ include('config.php');
 		if(mysqli_num_rows($res1)==0)
 		{
 				$q2="INSERT INTO user(name,email,pass,status) VALUES('$pass','$ema','$pass1','0')";
+				$res2=mysqli_query($con,$q2);
 		}	
 		$_SESSION['user']=$ema;
 		header('Location: home.php');
