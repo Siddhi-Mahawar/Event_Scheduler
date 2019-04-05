@@ -1,4 +1,27 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+include('config.php');
+	if(isset($_SESSION['logincust']))
+	{
+		$ema= $_SESSION['email'];
+		$pass =$_SESSION['first_name'];
+		$pass1=md5($pass);
+		$q1="SELECT * from user where email='$ema'";
+		$res1=mysqli_query($con,$q1);
+		if(mysqli_num_rows($res1)==0)
+		{
+				$q2="INSERT INTO user(name,email,pass,status) VALUES('$pass','$ema','$pass1','0')";
+		}	
+		$_SESSION['user']=$ema;
+		header('Location: home.php');
+	}
+		
+	if(isset($_POST['logoutsr']))
+	{
+		session_unset();
+		echo "<script type='text/javascript'>location.href = 'index.php';</script>";
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,12 +115,44 @@ border: 1px solid #F2F3F3;
 			<a  href="#" data-toggle="modal" data-target="#m" style="color:#fff">
 			<span class="glyphicon glyphicon-pencil"></span>Sign Up</a>
 		</li>
-			
 			</ul>			
         </div>
       </div>
     </nav>
-
+	
+	<?php
+			//echo '<a href="loginFB.php"><img src="images/loginfb.png" alt="Login with Facebook" width=222></a><br>';
+			include_once 'loginG.php';
+			if(isset($_GET['code'])){
+				$gClient->authenticate($_GET['code']);
+				$_SESSION['token'] = $gClient->getAccessToken();
+				header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
+			}
+			if (isset($_SESSION['token'])) {
+				$gClient->setAccessToken($_SESSION['token']);
+			}
+			if ($gClient->getAccessToken()) 
+			{
+				$gpUserProfile = $google_oauthV2->userinfo->get();
+				$_SESSION['oauth_provider'] = 'Google'; 
+				$_SESSION['oauth_uid'] = $gpUserProfile['id']; 
+				$_SESSION['first_name'] = $gpUserProfile['given_name']; 
+				$_SESSION['last_name'] = $gpUserProfile['family_name']; 
+				$_SESSION['email'] = $gpUserProfile['email'];
+				$_SESSION['logincust']='yes';
+			} else {
+				$authUrl = $gClient->createAuthUrl();
+				$output= '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/loging.png" alt="Sign in with Google+" width=222/></a>';
+			}
+			echo $output;
+			//if(isset($_SESSION[''])
+		if(isset($_SESSION['logincust']))
+		{
+			?>
+			<form method="post"><input class="btn btn-danger" style="margin-top:5px;width:70px;height:35px;" type="submit" value="Logout" name="logoutsr" width="48" height="48"></form>
+			<?php
+		}
+		?>
 <div class="row">
 <div class="col-lg-12">
     <div class="container theme-showcase" role="main">
