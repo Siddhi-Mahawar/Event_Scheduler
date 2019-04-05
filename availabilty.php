@@ -113,7 +113,7 @@ include 'header.php';
   
   <input type="datetime-local" class="date" name="et" required>
   <!-- <?php
-  echo '<select class="select_ven" name="ven" style="visibilty:hidden;">';
+  echo '<select class="select_ven" name="ven" style="">';
        echo  '<option  value="">Select Venue</option>';
           $r = mysqli_query($con,"select * from venue");
           // echo $r[0];
@@ -134,34 +134,6 @@ include 'header.php';
   <input class="submit"type="submit" name="get"/>
   </form>   
 </center>
-<!-- <form class="det" method="post">
-    <div class="row">
-<div class="col-sm-6">
-	 <div class="form-group">
-    <label for="exampleInputEmail1"><font color='black'>Enter Start time</font></label>
-    <input type="datetime-local" class="form-control" name="st" placeholder="Start Time" style="display:inline;width:50%;" required>
-    <label for="exampleInputEmail1"><font color='black'>Enter End time</font></label>
-    <input type="datetime-local" class="form-control" name="et"  placeholder="End Time" style="display:inline;width:50%;" required>
-  </div> 
-  </div>
-  </div>
-  <div class="row">
-<div class="col-sm-6">
-	 <div class="form-group">
-    <input type="datetime-local" class="form-control" name="et"  placeholder="End Time" required>
-  </div> 
-  </div>
-  </div>
-  
-  <div class="row">
-  <div class="col-sm-6">
-  <div class="form-group">
- <button name="get" class="btn btn-lg btn-success btn-block" type="submit">Get it!!</button>
-	
-  </div>
-  </div>
- </div> 
- </form> -->
 
 </body>
          
@@ -172,10 +144,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
  {
 
    echo $ven;
-    //  echo $st ;
-    //  echo '<br>';
-    //  echo $et ; 
-     //$que=mysqli_query($con,"select * from venue");
     
     $err="<font color='yellow'>Venue and time slot added</font>"; 
     $que=mysqli_query($con,"select * from venue");
@@ -190,124 +158,123 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     $st_arr[1]=$st_arr[1].$e;
     $_SESSION['start']= $st.$e;
     $_SESSION['end']=$et.$e;
-    // echo $st_arr[0]; 
-    // echo $st,$et;
+
+    if($et_arr[1]<=$st_arr[1])
+      echo "<script>alert(\"Enter End Time Must Be after start time\");</script>";
     echo '<center>';
     echo "<strong ><p style=\"padding:1%\">Start Time: $st - End Time: $et</p><strong>";
     echo'<div class="ui link cards" style="padding-left:5%">';
     $t=0;
+
+  // Select venues In given time and Date range
+    $hash =[];
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
     {
-         
-        // echo 'hey';
-        // echo $row['start_time'].date();
-        // echo 'hey';
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
         $vst_arr = explode(" ",$vst);
         $vet_arr = explode(" ",$vet);
         
+        // echo $name;
         
         $vst_arr[1] = str_replace(".000000","",$vst_arr[1]);
         $vet_arr[1] = str_replace(".000000","",$vet_arr[1]);
-        // echo $name.'<br>';
-        // echo $st_arr[1].'<br>';
-        // echo $et_arr[1].'<br>';
-        // echo $vst_arr[1].'<br>';
-        // echo $vet_arr[1].'<br>';
-        $ck=($vst_arr[0] <= $st_arr[0] && $vet_arr[0] >= $et_arr[0])&&($vst_arr[1] <= $st_arr[1] && $vet_arr[1] >= $et_arr[1]);
-        if($ven!=""&&$ven!=$name)
-        {
-          $ck=false;
-        }
-        // if($ck)
-        // {
-          //   $query = 'select * from events where evenue is '.$name;
-          //   $qu=mysqli_query($con,$query);
-          //   while($res = mysqli_fetch_array($query, MYSQLI_ASSOC))
-          //   {
-            //     $est = $res['estart'];
-            //     $eet = $res['eend'];
-            //     $est_arr = explode(" ",$est);
-            //     $eet_arr = explode(" ",$eet);
-            //     $est_arr[1] = str_replace(".000000","",$est_arr[1]);
-            //     $eet_arr[1] = str_replace(".000000","",$eet_arr[1]);
-            //    //if event is going on on that venue            
-            //      if ((($est_arr[0] >= $st[0] && $est_arr[0] <= $et[0])||($eet_arr[0] >= $st[0] && $est_arr[0] <= $et[0]))&&(($est_arr[1] >= $st[1] && $est_arr[1] <= $et[1])||($eet_arr[1] >= $st[1] && $est_arr[1] <= $et[1]))) {
-              
-              //       $ck=false;
-              //     }
-              //   }
-              // }
-              if($ck)
-              {
-                $e = ":00";
-                $st = $st.$e;
-                
-                $e = ":00";
-                $et = $et.$e;
-                // echo $et;
-                $venqu='select * from `event` where  (((`eventstart`  between \''.$st.'\' and \''.$et.'\') or (`eventend` between \''.$st.'\' and \''.$et.'\')) and `eventvenue` = \''.$name.'\')';
-                $qu=mysqli_query($con,$venqu);
-                if(mysqli_num_rows($qu) == 0 )
-                {
-                  ;
-                }
-                else{
-                  continue;
-                }
-                $t=1;
-                // echo 'hello';
-                $id=$row[0];
-                {
-                echo  '<div class="card">';
-                echo  ' <div class="image">';
-                echo '<img src="'.$images[$i].'">';
-                $_SESSION['image']=$images[$i];
-                echo '</div>';
-                echo '<div class="content">';
-                echo'<div class="header">'.$name.'</div>';
-                echo '<div class="meta">';
-                echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
-                echo '</div>';
-                echo '<div class="description">';
-                echo 'Matthew is an interior designer living in New York.';
-                echo '</div>';
-                echo "<a href='modal.php?ev=$name'>
-                      <img src='./icons/add.png' style='height:25px;width:25px;' />";
-                echo '</div>';
-                echo '</div>';
+        if(($vst_arr[0] <= $st_arr[0] && $vet_arr[0] >= $et_arr[0])&&($vst_arr[1] <= $st_arr[1] && $vet_arr[1] >= $et_arr[1]))
+          $hash[$name]=true;
+        else
+          $hash[$name]=false;
+        
 
-      //             if ($k%4==0 && $k!=0) {
-      //               echo '</div>';
-      //         echo '<div class="row">';
-      //       }
-      //       echo '<div class="col s12 m7">';
-      //       echo '<div class="card small">';
-      //       echo '<div class="card-image">';
-      //       echo '<img src="'.$images[$i].'">';
-      //       $_SESSION['image']=$images[$i];
-      //       echo '<span class="card-title">Event</span>';
-      //       echo '</div>';
-      //       echo'<div class="card-content">';
-      //       echo'<strong>'.$name.'</strong>';
-      //       echo'<br>';
-      //       echo'Time:'.$vst_arr[1].'-'.$vet_arr[1];
-            // echo "<a href='modal.php?ev=$name'>
-            // <img src='./icons/add.png' style='height:25px;width:25px;' />
-      //       </span>
-      //       </a>";
-      //       echo'</div>';
-      //       echo'</div>';
-      //       echo'</div>';
-      //       $k++;
+        // echo $hash[$name].$name;
+    }
+    $t=0;
+    
+    //Checking  everyday between given date on that Particular time for every Venue in time time Range By admin
+
+
+    // echo $hash['E'];
+
+    $que=mysqli_query($con,"select * from venue");
+    
+    while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
+    {
+      $vst = $row['start_time'];
+      $vet = $row['end_time'];
+      $name = $row['name'];
+     
+      
+      if($hash[$name]){ 
+        
+
+
+          $vst_arr = explode(" ",$vst);
+          $vet_arr = explode(" ",$vet);
+          
+          
+          $vst_arr[1] = str_replace(".000000","",$vst_arr[1]);
+          $vet_arr[1] = str_replace(".000000","",$vet_arr[1]);
+         
+          $str = $st_arr[0];
+
+          while ($str<$et_arr[0]) {
+            
+            $datetime = new DateTime($str);
+            $datetime->modify('+1 day');
+            $str = $datetime->format('Y-m-d');
+            $st_ck=$str." ".$st_arr[1];
+            $et_ck=$str." ".$et_arr[1];
+            // echo '<br>';
+            
+            //Check If event Exist on THat Day if yes then Hash it false i.e. this Vennue is not Available
+            
+            $venqu='select * from `event` where  (((`eventstart`  between \''.$st_ck.'\' and \''.$et_ck.'\') or (`eventend` between \''.$st_ck.'\' and \''.$et_ck.'\')) and `eventvenue` = \''.$name.'\')';
+            $qu=mysqli_query($con,$venqu);
+            if(mysqli_num_rows($qu) != 0 )
+              $hash[$name]=false;
+            
           }
-        }
-        
-        $i++;
-        
+          if($hash[$name]==true)
+            $t=1;
+
       }
+    }
+    
+    //Now Display All Available Content Venue
+    if ($t) {
+      $i=0;
+      $que=mysqli_query($con,"select * from venue");
+      while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
+      {
+        $vst = $row['start_time'];
+        $vet = $row['end_time'];
+        $name = $row['name'];
+        if($hash[$name]){
+        echo  '<div class="card">';
+        echo  ' <div class="image">';
+        echo '<img src="'.$images[$i].'">';
+        $_SESSION['image']=$images[$i];
+        echo '</div>';
+        echo '<div class="content">';
+        echo'<div class="header">'.$name.'</div>';
+        echo '<div class="meta">';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
+        echo '</div>';
+        echo '<div class="description">';
+        echo 'Matthew is an interior designer living in New York.';
+        echo '</div>';
+        echo "<a href='modal.php?ev=$name'>
+              <img src='./icons/add.png' style='height:25px;width:25px;' />";
+        echo '</div>';
+        echo '</div>';
+        $i++;
+      }
+    }
+    }  
+      
+
+
+
       if($t==0){
         // echo '<center>';
                 echo  '<div class="card">';
@@ -333,18 +300,8 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
       }
       echo'</div>';
       echo '</center>';
-      // if (!$con) {
-      //   die("Connection failed: " . mysqli_connect_error());
-      // }
-      // echo "Connected successfully";
       
     }
     
     ?>
 </html>
-
-<!-- <form action="/action_page.php">
-  Birthday:
-  <input type="date" name="bday">
-  <input type="submit">
-</form> -->
