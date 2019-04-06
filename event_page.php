@@ -74,8 +74,11 @@ if(isset($_POST['desc']))
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
 </style>
+<?php
+    include 'header.php';
+    include 'nav.php' ?>
 <link rel="stylesheet" href="./css/style1.css">
-<div class="row">
+<div class="row" style="padding-top:10%;">
         <div class="pic_base">
             <?php
                 $query = "SELECT eventcover FROM event where eventid=$eventid";
