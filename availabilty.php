@@ -37,7 +37,6 @@ include 'header.php';
                  `'`;/      `,  }
                     _\       ;  }
   O HAI THERE      /__`;-...'--'
-
 -->
 <style>
 .center{
@@ -73,7 +72,6 @@ include 'header.php';
   height:30px;
   width:20px;
 }
-
 @media screen and (max-width: 600px) {
   .det{
     padding-top:20%;
@@ -138,11 +136,10 @@ include 'header.php';
 </body>
          
 <?php 
-$images=["https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg"];
+/*$images=["https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg"];*/
  extract($_POST);
  if(isset($get))
  {
-
    echo $ven;
     
     $err="<font color='yellow'>Venue and time slot added</font>"; 
@@ -158,14 +155,12 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     $st_arr[1]=$st_arr[1].$e;
     $_SESSION['start']= $st.$e;
     $_SESSION['end']=$et.$e;
-
     if($et_arr[1]<=$st_arr[1])
       echo "<script>alert(\"Enter End Time Must Be after start time\");</script>";
     echo '<center>';
     echo "<strong ><p style=\"padding:1%\">Start Time: $st - End Time: $et</p><strong>";
     echo'<div class="ui link cards" style="padding-left:5%">';
     $t=0;
-
   // Select venues In given time and Date range
     $hash =[];
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
@@ -185,16 +180,12 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         else
           $hash[$name]=false;
         
-
         // echo $hash[$name].$name;
     }
     $t=0;
     
     //Checking  everyday between given date on that Particular time for every Venue in time time Range By admin
-
-
     // echo $hash['E'];
-
     $que=mysqli_query($con,"select * from venue");
     
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
@@ -206,8 +197,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
       
       if($hash[$name]){ 
         
-
-
           $vst_arr = explode(" ",$vst);
           $vet_arr = explode(" ",$vet);
           
@@ -216,7 +205,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
           $vet_arr[1] = str_replace(".000000","",$vet_arr[1]);
          
           $str = $st_arr[0];
-
           while ($str<$et_arr[0]) {
             
             $datetime = new DateTime($str);
@@ -236,29 +224,34 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
           }
           if($hash[$name]==true)
             $t=1;
-
       }
     }
     
     //Now Display All Available Content Venue
     if ($t) {
-      $i=0;
+      //$i=0;
       $que=mysqli_query($con,"select * from venue");
       while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
       {
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
+		$Location=$row['location'];
+		$filepath=$row['image'];
+		$path="admin/".$filepath;
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-        echo '<img src="'.$images[$i].'">';
-        $_SESSION['image']=$images[$i];
+		?>
+		
+       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
+       <?php
+        //$_SESSION['image']=$images[$i];
         echo '</div>';
         echo '<div class="content">';
         echo'<div class="header">'.$name.'</div>';
         echo '<div class="meta">';
-        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>'.$Location.'</a>';
         echo '</div>';
         echo '<div class="description">';
         echo 'Matthew is an interior designer living in New York.';
@@ -267,20 +260,17 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
               <img src='./icons/add.png' style='height:25px;width:25px;' />";
         echo '</div>';
         echo '</div>';
-        $i++;
+       // $i++;
       }
     }
     }  
       
-
-
-
       if($t==0){
         // echo '<center>';
                 echo  '<div class="card">';
                 echo  ' <div class="image">';
-                // echo '<img src="https://materializecss.com/images/sample-1.jpg">';
-                // $_SESSION['image']=$images[$i];
+                echo '<img src="https://materializecss.com/images/sample-1.jpg">';
+               //  $_SESSION['image']=$images[$i];
                 echo '</div>';
                 echo '<div class="content">';
                 echo'<div class="header">Sorry!! No Venue Available</div>';
@@ -288,7 +278,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 // echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
                 echo '</div>';
                 echo '<div class="description">';
-                echo 'Try Makin other Searches';
+                echo 'Try Making other Searches';
                 echo '</div>';
                 // echo "<a href='modal.php?ev=$name'>
                 //       <img src='./icons/add.png' style='height:25px;width:25px;' />";
