@@ -249,16 +249,23 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
+		$Location=$row['location'];
+		$filepath=$row['image'];
+		$path="admin/".$filepath;
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-        echo '<img src="'.$images[$i].'">';
-        $_SESSION['image']=$images[$i];
+		?>
+		
+       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
+       <?php
+       // echo '<img src="'.$images[$i].'">';
+       // $_SESSION['image']=$images[$i];
         echo '</div>';
         echo '<div class="content">';
         echo'<div class="header">'.$name.'</div>';
         echo '<div class="meta">';
-        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>'.$Location.'</a>';
         echo '</div>';
         echo '<div class="description">';
         echo 'Matthew is an interior designer living in New York.';
@@ -267,7 +274,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
               <img src='./icons/add.png' style='height:25px;width:25px;' />";
         echo '</div>';
         echo '</div>';
-        $i++;
+        //$i++;
       }
     }
     }  
