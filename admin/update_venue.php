@@ -20,7 +20,7 @@ $venid=$_GET['id'];
     $fileextension= substr($name, $position);
 	//echo "file extension";
 	//echo $fileextension;
-    $path= 'Uploads/venuenew/';
+    $path= 'Uploads/venues/';
     if (!empty($name)){
         if (move_uploaded_file($tmp_name, $path.$venid.$fileextension)) {
            
