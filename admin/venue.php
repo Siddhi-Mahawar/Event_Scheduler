@@ -1,3 +1,10 @@
+<?php
+include('config.php');
+session_start();
+extract($_SESSION);
+$venid=$id;
+?>
+
 <script type="text/javascript">
 function deletes(id)
 {
@@ -12,14 +19,16 @@ function deletes(id)
 <div class="table-responsive">
 <table class="table table-bordered">
 <tr class="active" height="30px">
-	<td colspan="6">
-	<a href="index.php?option=add_venue" ><span class=" glyphicon glyphicon-plus-sign" style="color:black">Add New Venue and time slot</span></a></td>
+	<td colspan="8">
+	<a href="index.php?option=add_venue" ><span class=" glyphicon glyphicon-plus-sign" style="color:black">Add New Venue </span></a></td>
 </tr>
 <tr class="info" height="30">
 	<Th>Sr. No</Th>
 	<th>Venue</th>
 	<th>Start time</th>
 	<th>End time</th>
+	<th>Location</th>
+	<th>Image</th>
 	<th>Delete</th>
 	<th>Update</th>
 	
@@ -75,7 +84,8 @@ error_reporting(1);
    $et = explode(".",$et);
    echo "<th>".$st[0]."</th>";
    echo "<th>".$et[0]."</th>";
-
+	echo "<th>".$row['location']."</th>";
+	echo "<th>".$row['image']."</th>";
 
 echo "<td class='text-center'><a href='#' onclick='deletes($row[id])'><span class='glyphicon glyphicon-remove' style=color:red;></span></a></td>";
 
@@ -95,7 +105,7 @@ $i++;
 
 
 //for showing Pagination
-echo "<tr class='info'><td colspan='6'>";
+echo "<tr class='info'><td colspan='8'>";
 if( $pagi > 0 )
  {
          $last = $pagi - 2;
