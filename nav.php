@@ -50,7 +50,7 @@
                             <li><a href="eventreq.php" title="Contact">Requests</a></li>
                             
                             <?php if (isset($user)) {
-                            echo '<li><a href="home.php" title="Home" >'. $user .'</a></li>';
+                            echo '<li><a href="events.php" title="Home" >'. $user .'</a></li>';
                             }
                             else 
                             echo '<li ><a href="index.php" title="Login" ">Log In</a></li>';
