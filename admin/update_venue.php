@@ -9,32 +9,49 @@ $venid=$_GET['id'];
  {
 	  if($et>$st)
 	  {
-		  $que=mysqli_query($con,"update venue set name='$ven',start_time='$st',end_time='$et',location='$loc' where id=$venid");
-	  $name= $_FILES["image"]["name"];
-    $dot='.';
-    $tmp_name= $_FILES["image"]["tmp_name"];
-	
-	//echo $tmp_name;
-   // echo $name;
-	$position= strpos($name, "."); 
-    $fileextension= substr($name, $position);
-	//echo "file extension";
-	//echo $fileextension;
-    $path= 'Uploads/venues/';
-    if (!empty($name)){
-        if (move_uploaded_file($tmp_name, $path.$venid.$fileextension)) {
-           
+        $today = date("Y-m-d h:i:s");
+
+        $q = "select * from venue where id=$venid";
+        $query=mysqli_query($con,$q);
+        $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+        $st_ck=$row['start_time'];
+        $et_ck=$row['end_time'];
+
+        $q="count * from event where venue = '$ven' and eventstart >= '$today' and (((`eventstart`  between \''.$st_ck.'\' and \''.$et_ck.'\') or (`eventend` between \''.$st_ck.'\' and \''.$et_ck.'\')) and `eventvenue` = \''.$ven.'\')"; 
+        $count_before=mysqli_query($con,$q);
+        $q="count * from event where venue = '$ven' and eventstart >= '$today' and (((`eventstart`  between \''.$st.'\' and \''.$et.'\') or (`eventend` between \''.$st.'\' and \''.$et.'\')) and `eventvenue` = \''.$ven.'\')"; 
+        $count_after=mysqli_query($con,$q);
+        if($count_after==$count_before)
+        {   
+            $que=mysqli_query($con,"update venue set name='$ven',start_time='$st',end_time='$et',location='$loc' where id=$venid");
+            $name= $_FILES["image"]["name"];
+            $dot='.';
+            $tmp_name= $_FILES["image"]["tmp_name"];
+            
+            //echo $tmp_name;
+            // echo $name;
+            $position= strpos($name, "."); 
+            $fileextension= substr($name, $position);
+            //echo "file extension";
+            //echo $fileextension;
+            $path= 'Uploads/venues/';
+            if (!empty($name)){
+                if (move_uploaded_file($tmp_name, $path.$venid.$fileextension)) {
+                
+                }
+            }
+            // $file = addslashes(file_get_contents($_FILES["profile"]["tmp_name"]));
+            $query = "UPDATE venue SET image='$path$venid$fileextension' where id=$venid";
+            if(mysqli_query($con,$query))
+            {
+                //echo '<script>alert("Image Inserted into database")</script>';
+            }
+            
         }
-    }
-    // $file = addslashes(file_get_contents($_FILES["profile"]["tmp_name"]));
-    $query = "UPDATE venue SET image='$path$venid$fileextension' where id=$venid";
-    if(mysqli_query($con,$query))
-    {
-         //echo '<script>alert("Image Inserted into database")</script>';
-    }
- 	 
-	 
-	$err="<font color='yellow'>Venue details Updated</font>";
+        else{
+            $err="<font color='yellow'>Many Events Will be affected</font>";
+        }
+        $err="<font color='yellow'>Venue details Updated</font>";
 	 
  }
  else
