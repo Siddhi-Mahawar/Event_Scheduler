@@ -38,20 +38,37 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li >
-                                <a href="home.php" title="Home" >Home</a>
+							<?php if (isset($user)) {
+								echo '<a href="home.php" title="Home" >Home</a>';
+								}
+							?>
                                 
-                            </li> 
-                            <li><a href="availabilty.php" title="Search By Time">Availability</a></li>
-                            <li><a href="venue.php" title="Serach By Venue">Venues</a></li>
-                            <li><a href="requests.php" title="Invitations">Invites</a></li>
+                            </li>
+							<?php if (isset($user)) {
+								echo '<li><a href="availabilty.php" title="Search By Time">Availability</a></li>';
+									}
+							?>
+							<?php if (isset($user)) {
+								echo '<li><a href="venue.php" title="Serach By Venue">Venues</a></li>';
+									}
+							?>
+							<?php if (isset($user)) {
+								echo '<li><a href="requests.php" title="Invitations">Invites</a></li>';
+									}
+							?>
                             <!-- <li><a href="" title="About">About</a></li> -->
                             <!-- <li><a href="" title="Contact">Contact</a></li> -->
-                            <li><a href="publicevents.php" title="Contact">Events</a></li>
-                            <li><a href="eventreq.php" title="Contact">Requests</a></li>
-                            
                             <?php if (isset($user)) {
-                            echo '<li><a href="events.php" title="Home" >'. $user .'</a></li>';
-                            }
+								echo '<li><a href="publicevents.php" title="Contact">Events</a></li>';
+								}
+							?>
+							<?php if (isset($user)) {
+								echo '<li><a href="eventreq.php" title="Contact">Requests</a></li>';
+								}
+							?>
+                            <?php if (isset($user)) {
+								echo '<li><a href="events.php" title="Home" >'. $user .'</a></li>';
+							}
                             else 
                             echo '<li ><a href="index.php" title="Login" ">Log In</a></li>';
                             ?>
