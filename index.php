@@ -17,7 +17,7 @@ if(isset($_SESSION['logincust']))
 				$res2=mysqli_query($con,$q2);
 		}	
 		$_SESSION['user']=$ema;
-		header('Location: home.php');
+		//header('Location: home.php');
 	}
 
 if(isset($submit))
@@ -162,7 +162,7 @@ $password=md5($password);
 		if(isset($_SESSION['logincust']))
 		{
 			?>
-			<form method="post"><input class="btn btn-danger" style="margin-top:5px;width:70px;height:35px;" type="submit" value="Logout" name="logoutsr" width="48" height="48"></form>
+			<form method="post" action="logout.php"><input class="btn btn-danger" style="margin-top:5px;width:70px;height:35px;" type="submit" value="Logout" name="logoutsr" width="48" height="48"></form>
 			<?php
 		}
 		?>
