@@ -12,7 +12,7 @@ if(isset($_POST["insert"]))
     $fileextension= substr($name, $position);
     $path= 'Uploads/cover/';
     if (!empty($name)){
-        if (move_uploaded_file($tmp_name, $path.$eveid.$fileextension)) {
+        if (move_uploaded_file($tmp_name,$path.$eveid.$fileextension)) {
             // echo 'Uploaded!';
         }
     }
@@ -37,7 +37,7 @@ if(isset($_POST["upload"]))
         }
     }
     // $file = addslashes(file_get_contents($_FILES["profile"]["tmp_name"]));
-    $query = "UPDATE event SET eventcover='$path$eveid$fileextension' where eventid=$eventid";
+    $query = "UPDATE event SET eventimage='$path$eveid$fileextension' where eventid=$eventid";
     if(mysqli_query($con,$query))
     {
         // echo '<script>alert("Image Inserted into database")</script>';
@@ -53,7 +53,7 @@ if(isset($_POST['desc']))
     $path= 'Uploads/files/';
     if (!empty($name)){
         if (move_uploaded_file($tmp_name, $path.$eveid.$fileextension)) {
-            // echo 'Uploaded!';
+				echo 'Uploaded!';
         }
     }
     // $file = addslashes(file_get_contents($_FILES["description"]["tmp_name"]));
@@ -92,11 +92,12 @@ if(isset($_POST['desc']))
                 else
                 {
                     
-                        echo '
-                                <img src="data:image/jpeg;base64,'.base64_encode($row['eventcover']).'" class="cover_image" />
-                        ';
-                }
-            ?>
+					$r=$row['eventcover'];
+                 ?>
+                                <img src=<?php echo $r?> class="cover_image" />
+				<?php
+				}
+				?>
                 <!-- <img src="bg4.jpg" class="cover_image"> -->
                 <div class="event_cover">
                     <form method="post" enctype="multipart/form-data">
@@ -119,11 +120,12 @@ if(isset($_POST['desc']))
                     }
                     else
                     {
-                            echo '
-                                    <img src="data:image/jpeg;base64,'.base64_encode($row['eventimage']).'" style="width:120px;" id="profile_pic" alt="" class="image" />
-                            ';
-                    }
-                ?>
+						$r=$row['eventimage'];
+                            ?>
+                                <img src=<?php echo $r?> class="cover_image" />
+				<?php
+				}
+				?>
                         <div class="icon">
                         <form method="post" enctype="multipart/form-data">
                                 <a class="fa fa-camera" id="camera_pic"></a>
@@ -174,7 +176,7 @@ if(isset($_POST['desc']))
                         {   
                             $add=$row['eventdescdoc'];
                             ?>
-                            <a href=<?php echo $add; ?>><h4>Event Description</h4></a>;
+                            <a href=<?php echo $add; ?>><h4>Event Description</h4></a>
                             <?php
                         }
                         ?>
