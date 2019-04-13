@@ -1,69 +1,5 @@
 @charset "UTF-8";
-/**
-    Theme Name: SkyLine
-    Theme URI: http://engotheme.com/
-    Author: Engo Team
-    Author URI: http://engotheme.com/
-    Description: Engo ABC HTML Template
-    Version: 1.0
-    Last change:    2017/12/11 [Initial Release]
-    License: GNU General Public License v2 or later
-    Text Domain: Engotheme
- **/
-/*------------------------------------------------------------------
-[Table of contents]
-    components
-        1.Base
-            1.1 Mixin
-            1.2 Normalize
-            1.3 Variable
-        2.Layout
-            2.1 Nav
-            2.2 Header
-            2.3 Footer
-            2.4 Content
-                2.4.1 Map
-                2.4.2 ROOMS
-                2.4.3 GALLERY
-                2.4.4 NEW
-                2.4.5 EVENTS
-                2.4.6 SCROLL TOP
-                2.4.7 TESTIMONIALS
-                2.4.8 BEST
-                2.4.9 ABOUT 
-                2.4.10 BODY-PAGE
-                2.4.11 BANNER-TEMS
-                2.4.12 BODY-TEMS
-                2.4.13 BODY-ROOM 
-                2.4.14 CHECK-OUT 
-                2.4.15 RESTAURANTS
-                2.4.16 CONTACT
-                2.4.17 BLOG
-                2.4.18 SIDEBAR
-                2.4.19 WIDGETSEARCH
-                2.4.20 POST
-                2.4.21 NAVIGATION
-                2.4.22 VIDEO
-                2.4.23 COMMENT
-                2.4.24 AttRACTIONS
-                2.4.25 SECTION-TEAM
-                2.4.26 RESERVATION
-                2.4.27 DATEPICKER
-                2.4.28 PRODUCT
-                2.4.29 GUEST-BOOK 
-            2.5 Boostrap  
-        3.Reponsive
-            4.1 Desktop
-            4.2 Table
-            4.3 Mobile
 
--------------------------------------------------------------------*/
-/*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -6068,7 +6004,7 @@ button.close {
         color: #8E7037; }
       .header-sky .navbar .navbar-nav li a {
         font-weight: 600;
-        font-size: 14px;
+        font-size: 11px;
         color: #fff;
         font-family: 'Poppins', sans-serif;
         padding: 0px;
