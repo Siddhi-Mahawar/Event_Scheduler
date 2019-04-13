@@ -3,6 +3,20 @@ include('config.php');
 session_start();
 extract($_SESSION);
 $eventid=$eveid;
+if(isset($_POST["private"]))
+{
+    $q1="SELECT statue from event where eventid=$eventid";
+    $r1=mysqli_query($con,$q1);
+    $row3=mysqli_fetch_array($r1);
+    if($row3['statue']==1)
+        $q2="UPDATE event SET statue=0 where eventid=$eventid";
+    else
+        $q2="UPDATE event SET statue=1 where eventid=$eventid";
+     if(mysqli_query($con,$q2))
+    {
+        // echo '<script>alert("hey")</script>';
+    }   
+}
 if(isset($_POST["insert"]))
 {
     $name= $_FILES["image"]["name"];
@@ -213,6 +227,36 @@ if(isset($_POST['desc']))
                     ?>
                 </div>
                 <div class="col-sm-9" id="participants">
+                <div class="ui toggle checkbox">
+                            <?php
+                                $query2="SELECT * FROM event where eventid=$eventid";
+                                $result2=mysqli_query($con,$query2);
+                                $row2=mysqli_fetch_array($result2);
+                                $privacy=$row2['statue'];
+                            ?>
+                            <br/>
+                            <form method="post">
+                            <input type="checkbox" name="priv" <?php if($privacy) echo "checked";?> data-toggle="modal" data-target="#Modal">     
+                            <label>public/private</label>
+                </form>
+                        </div>
+                        <div class="modal fade" id="Modal" role="dialog">
+                            <div class="modal-dialog">
+                        
+                        <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form method="post"  >
+                                            <a href="" class="close">X</a>
+                                            <h4> Are you sure to commit this change</h4>
+                                            <input type="submit" name="private" style="align:center;">
+                                        </form>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>  
+                        
                         <img src="./icons/add_members.png" id="add_mem" data-toggle="modal" data-target="#myModal" >
                     <h2 id="members"> Participants</h2> 
                     <br/>   
