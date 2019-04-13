@@ -37,7 +37,7 @@ For admin login with following credentials
 	-and the events which will be attended by user is under emaild
 	-After giving input “+”   will redirect to create event
 	-Invite can be send from Event page
-	-user can accept/reject Invitation<br>
+	-user can accept/reject Invitation
 ## ADVANCED FEATURES
 	-google login on login page
 	-After creating event user can upload file to describe 
