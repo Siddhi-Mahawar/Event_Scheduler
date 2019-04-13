@@ -30,7 +30,7 @@ For admin login with following credentials
 
 			
 ## User’s Features:
-1.Venues can be viewed from navbar
+	-Venues can be viewed from navbar
 	-All Venues are displayed with time limit set by Admin
 	-User can input time and date for booking and select the venue
 	-All the Events are displayed under Events
