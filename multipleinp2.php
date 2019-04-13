@@ -203,8 +203,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $et = str_replace("T"," ",$et);
         $st_arr = explode(" ",$st);
         $et_arr = explode(" ",$et);
-        $_SESSION['start']=$st;
-        $_SESSION['end']=$et;
         $e = ":00";
         $et_arr[1]=$et_arr[1].$e;
         $st_arr[1]=$st_arr[1].$e;
@@ -320,7 +318,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
             echo '';
             echo '</div>';
             echo "
-                <img  onclick=\"window.location.href='modal.php?ev=$name'\" src='./icons/add.png' style='height:25px;width:25px;' />";
+                <img  onclick=\"window.location.href='form1.php?ev=$name&st=$st$e&et=$et$e'\" src='./icons/add.png' style='height:25px;width:25px;' />";
             echo '</div>';
             echo '</div>';
             //$i++;
