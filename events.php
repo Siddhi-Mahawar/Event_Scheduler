@@ -132,7 +132,7 @@ used to vertically center elements, may need modification if you're not using de
                 <div class="row">
                   
                   <div class="col col-xs-8 text-left">
-                    <button type="button" class="btn btn-lg btn-danger btn-create">Private Events</button>
+                    <button type="button" class="btn btn-lg btn-danger btn-create" disabled = "disabled">Private Events</button>
                   </div>
                 </div>
               </div>
@@ -186,7 +186,7 @@ used to vertically center elements, may need modification if you're not using de
                 <div class="row">
                   
                   <div class="col col-xs-8 text-left">
-                    <button type="button" class="btn btn-lg btn-success btn-create">Public Events</button>
+                    <button type="button" class="btn btn-lg btn-success btn-create" disabled = "disabled">Public Events</button>
                   </div>
                 </div>
               </div>
@@ -259,7 +259,7 @@ used to vertically center elements, may need modification if you're not using de
                 <div class="row">
                   
                   <div class="col col-xs-8 text-left">
-                    <button type="button" class="btn btn-lg btn-primary btn-create">Organiser</button>
+                    <button type="button" class="btn btn-lg btn-primary btn-create" disabled = "disabled">Organiser</button>
                   </div>
                 </div>
               </div>
