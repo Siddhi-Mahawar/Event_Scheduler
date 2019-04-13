@@ -40,52 +40,6 @@ include 'header.php';
 
 -->
 <style>
-#space{
-	
-  padding-top: 5%;
- 
-}
-@media only screen and (max-width: 600px) {
-	#space
-	{
-		padding-top:5%;
-		padding-bottom:2%;
-	}
-} 
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-	#space
-	{
-		padding-top:5%;
-		padding-bottom:2%;
-	}
-} 
-@media only screen and (min-width: 768px) {
-	#space
-	{
-		padding-top:5%;
-		padding-bottom:2%;
-	}
-} 
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-	#space
-	{
-		padding-top:5%;
-		padding-bottom:10%;
-	}
-} 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-	#space
-	{
-		padding-top:5%;
-		padding-bottom:10%;
-	}
-}
 .center{
   color:black;
 }
@@ -138,7 +92,19 @@ include 'header.php';
        
 <body>
 <?php include 'nav.php';?>
-<div id="space">
+    <div class="modal-container" id="modal">
+    <div class="modal">
+        <a href="" class="close">X</a>
+        <span class ="modal_heading">
+            Event Details
+        </span>
+        <form method="post" action="modal.php">
+            <input type="text" class="details" placeholder="Event Name" name="eventname" value="<?php echo $eventname;?>"  required /><br>
+            <input type="text" class="details" placeholder="Event Description" name="eventdesc" value="<?php echo $eventdesc;?>" required /><br>
+            <input type="submit" class="btnEvent" value="Add Event" name="addevent">
+        </form>
+    </div>
+</div>
 <center>
  <form method="post" class="det">
     <label ><font color='black' style="text-inline:left;">Start time-</font></label>
@@ -160,6 +126,7 @@ include 'header.php';
           }
         echo '</select>';
           ?>
+ 
   <!-- <select >
     <option>Select Venue<option>
     <option>fiugiufg<option>
@@ -172,15 +139,12 @@ include 'header.php';
 </body>
          
 <?php 
-    
 $images=["https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg"];
  extract($_POST);
  if(isset($get))
  {
-
-    
     $err="<font color='yellow'>Venue and time slot added</font>"; 
-    $que=mysqli_query($con,"select * from venue");
+    $que=mysqli_query($con,"select * from venue where name='$ven'");
     $st = str_replace("T"," ",$st);
     $et = str_replace("T"," ",$et);
     $st_arr = explode(" ",$st);
@@ -204,6 +168,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     $hash =[];
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
     {
+        
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
@@ -229,17 +194,14 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
 
     // echo $hash['E'];
 
-    $que=mysqli_query($con,"select * from venue");
+    $que=mysqli_query($con,"select * from venue where name='$ven'");
     
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
     {
       $vst = $row['start_time'];
       $vet = $row['end_time'];
       $name = $row['name'];
-     $location=$row['location'];
-        $filepath=$row['image'];
-        $path="admin/".$filepath;
-        
+     
       
       if($hash[$name]){ 
         
@@ -280,30 +242,29 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     //Now Display All Available Content Venue
     if ($t) {
       $i=0;
-      if($ven=="")
-        $que=mysqli_query($con,"select * from venue");
-      else
-        $que=mysqli_query($con,"select * from venue name=$ven");
-      
-        while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
+      $que=mysqli_query($con,"select * from venue where name='$ven'");
+      while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
       {
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
-        $location=$row['location'];
-        $filepath=$row['image'];
-        $path="admin/".$filepath;
-        
+		$Location=$row['location'];
+		$filepath=$row['image'];
+		$path="admin/".$filepath;
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-        echo '<img src="'.$path.'">';
-        $_SESSION['image']=$path;
+		?>
+		
+       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
+       <?php
+       // echo '<img src="'.$images[$i].'">';
+       // $_SESSION['image']=$images[$i];
         echo '</div>';
         echo '<div class="content">';
         echo'<div class="header">'.$name.'</div>';
         echo '<div class="meta">';
-        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a href="https://maps.google.com/?q='.$location.'">'.$location.'</a>';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>'.$Location.'</a>';
         echo '</div>';
         echo '<div class="description">';
         echo '';
@@ -312,7 +273,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
               <img src='./icons/add.png' style='height:25px;width:25px;' />";
         echo '</div>';
         echo '</div>';
-        $i++;
+        //$i++;
       }
     }
     }  
@@ -343,6 +304,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 
                 echo'</div>';
       }
+      echo'</div>';
       echo '</center>';
       
     }
@@ -373,24 +335,22 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
             </div>
             <div class="content">
                 <div class="header">'.$name.'</div>
-                <div class="meta">
-                <a>$Location</a>
-                </div>
-                <div class="description">
+                <div class="meta">';
+              echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a href="https://maps.google.com/?q='.$location.'">'.$location.'</a></div>';                
+              echo  '<div class="description">
                 '.$st_arr[0].'-'.$et_arr[0].'
-                </div>
-            </div>
+                </div>';
+               
+            echo  '</div>
             
         </div>';
     }
-    echo '</div></div></center>';
+    echo '</center>';
 
 
     }
-	?>
-	</div>
+    ?>
+<div style="padding-top:20px">
+<?php include 'footer.php' ; ?>
+  </div>
 </html>
-
-<?php
-include('footer.php');
-?>
