@@ -32,7 +32,7 @@ For admin login with following credentials
 			
 ## User’s Features:
 	-Venues can be viewed from navbar
-	-All Venues are displayed with time limit set by Admin
+	-All Venues(along with their google location) are displayed with time limit set by Admin
 	-User can input time and date for booking and select the venue
 	-All the Events are displayed under Events
 	-and the events which will be attended by user is under emaild
