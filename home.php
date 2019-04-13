@@ -66,7 +66,9 @@ include 'header.php';
 }
 
 #intro h1 span {
-  color: #f82249;
+  color: #E9B294;
+  font-size:20px;
+
 }
 
 #intro p {
@@ -74,7 +76,6 @@ include 'header.php';
   font-weight: 700;
   font-size: 20px;
 }
-
 
     .cd{
         padding-left:5.0%;
@@ -115,8 +116,7 @@ include 'header.php';
     <!-- END-HEADER -->
     <section id="intro">
     <div class="intro-container wow fadeIn">
-      <h1 class="mb-4 pb-0">EVENT SCHEDULER<br><span>GET STARTED</span> </h1>
-     
+      <h1 class="pb-0">Welcome to The Liberals<br><span>Defining Event a new Name</span> </h1>
      
     </div>
   </section>
