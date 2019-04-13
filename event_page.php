@@ -1,3 +1,48 @@
+<html>
+<head>
+<style>
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}
+</style>
+</head>
+<body>
 <?php
 include('config.php');
 session_start();
@@ -78,105 +123,165 @@ if(isset($_POST['desc']))
     }
 }
 ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Satisfy');
-@import url('https://fonts.googleapis.com/css?family=Margarine');
-@import url('https://fonts.googleapis.com/css?family=Courgette');
-
-</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 <?php
     include 'header.php';
     include 'nav.php' ?>
-<link rel="stylesheet" href="./css/style1.css">
-<div class="row" style="padding-top:10%;">
-        <div class="pic_base">
-            <?php
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<div class="container">
+    <div class="fb-profile">
+		<div class="cover">
+		<?php
                 $query = "SELECT eventcover FROM event where eventid=$eventid";
                 $result = mysqli_query($con,$query);
                 $row=mysqli_fetch_array($result);
-                if(mysqli_num_rows($result)!=1 || $row['eventcover']==null)
+                if(mysqli_num_rows($result)!=1 || $row['eventcover']==null || $row['eventcover']=='Uploads/cover/')
                 {
-                    echo '
-                    <img src="./icons/bg4.jpg" class="cover_image"> ';
+                    ?>
+					<img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+					<?php
                 }
                 else
                 {
                     
 					$r=$row['eventcover'];
-                 ?>
-                                <img src=<?php echo $r?> class="cover_image" />
-				<?php
+					?>
+					<img align="left" class="fb-image-lg" src=<?php echo $r ?> height="50%" alt="Profile image example"/>
+                 <?php
 				}
-				?>
-                <!-- <img src="bg4.jpg" class="cover_image"> -->
-                <div class="event_cover">
-                    <form method="post" enctype="multipart/form-data">
-                        <a class="fa fa-camera" id="upload_cover"></a>
-                        <input type="file" name="image" id="image" style="display:none" onchange="Cover()" />
-                        <script>$('#upload_cover').click(function(){ $('#image').trigger('click'); });</script>
-                        <input type="submit" name="insert" id="insert" value="Insert" style="display:none"/>
-                        
-                    </form>
-                </div>
-                <div class="event_pic">
-                <?php
+				 ?>
+        
+		</div>
+		<div class="profile">
+		
+					<?php
                     $query = "SELECT eventimage FROM event where eventid=$eventid";
                     $result = mysqli_query($con,$query);
                     $row=mysqli_fetch_array($result);
-                    if(mysqli_num_rows($result)!=1 || $row['eventimage']==null)
+                    if(mysqli_num_rows($result)!=1 || $row['eventimage']==null || $row['eventimage']=='Uploads/profile/')
                     {
-                        echo '
-                        <img src="./icons/user.png" class="profile_pic"> ';
+						?>
+						<img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+                        <?php
                     }
                     else
                     {
 						$r=$row['eventimage'];
-                            ?>
-                                <img src=<?php echo $r?> class="cover_image" />
+						?>
+                        <img align="left" class="fb-image-profile thumbnail" src=<?php echo $r?> alt="Profile image example"/>
 				<?php
 				}
 				?>
-                        <div class="icon">
-                        <form method="post" enctype="multipart/form-data">
-                                <a class="fa fa-camera" id="camera_pic"></a>
-                                <input type="file" name="profile" id="profile" style="display:none" onchange="Profile()"/>
-                                <script>$('#camera_pic').click(function(){ $('#profile').trigger('click'); });</script>
-                                <input type="submit" name="upload" id="upload" value="Upload" style="display:none"/>
-                        </form>
-                        </div>
-                </div>
-        </div>
-        <div class="content_base">
-                <div class="col-sm-3" id="details"> 
-                    <!-- <h1 class="event_name" style="font-family: 'Courgette', cursive;">Event Name</h1> -->
-                    <?php
+		
+        
+		</div>
+        <div class="fb-profile-text">
+		<div class="ui toggle checkbox">
+                            <?php
+                                $query2="SELECT * FROM event where eventid=$eventid";
+                                $result2=mysqli_query($con,$query2);
+                                $row2=mysqli_fetch_array($result2);
+                                $privacy=$row2['statue'];
+                            ?>
+                            <br/>
+                            
+            <p>
+			<div class="pull-right">
+				<form method="post" enctype="multipart/form-data">
+				<input type="file" name="image" id="image" style="display:none" onchange=Cover() />
+				<button type="button" name="UploadCover" class="btn btn-primary btn-sm" style="padding-botton:2%" onclick=Func()>Upload Cover Photo</button>
+				<input type="submit" name="insert" id="insert" value="Insert" style="display:none"/>
+				</form>
+			</div>
+			</p>
+			
+			<p>
+			<form method="post" enctype="multipart/form-data">
+			<input type="file" name="profile" id="profile" style="display:none" onchange="Profile()"/>
+			<button type="button" class="btn btn-success btn-sm"onclick=Func1()>Upload Event Photo</button>
+			<input type="submit" name="upload" id="upload" value="Upload" style="display:none"/>
+             </form>
+			</p>
+		</h1>
+		<?php
                     $query = "SELECT eventname FROM event where eventid=$eventid";
                     $result = mysqli_query($con,$query);
                     while($row = mysqli_fetch_array($result))
                     {
                         $p=$row['eventname'];
-                        echo '
-                                <h2 style="font-style:bold;">'.($p).'</h2>
-                        ';
+						?>
+                        
+                           <h1><?php echo $p?></h1>
+						<?php
                     }
-                    ?>
-                    <br />
-                    <?php
-                    $query = "SELECT eventdesc FROM event where eventid=$eventid";
+		?>
+		<h1><div class="pull-right">
+		<form method="post">						  
+							<?php
+                                $query2="SELECT * FROM event where eventid=$eventid";
+                                $result2=mysqli_query($con,$query2);
+                                $row2=mysqli_fetch_array($result2);
+                                $privacy=$row2['statue'];
+                            ?>
+							
+							<button type="button" class="btn btn-info btn-lg" style="padding-bottom:2%" onclick=private() >
+							<?php
+								if($privacy==1)
+								{
+									?>
+									 Make private
+									<?php
+								}
+								else
+								{
+							?>
+								Make public
+								<?php
+								}								
+								?></button>
+							</form></div></h1>
+		
+		<p><div class="pull-right"><button type="button" class="btn btn-danger btn-lg" style="padding-top:2%" id="add_mem" data-toggle="modal" data-target="#myModal">Add participants</button></div></p>
+		
+		<?php
+					$query = "SELECT eventdesc FROM event where eventid=$eventid";
                     $result = mysqli_query($con,$query);
                     while($row = mysqli_fetch_array($result))
                     {
                         $p=$row['eventdesc'];
-                        echo '
-                                <h4 style="font-style: italic;">'.($p).'</h4>
-                        ';
+                        ?>
+						<p><?php echo $p?></p>
+						<?php
                     }
                     ?>
-                    <?php
+		<?php
+                    $query = "SELECT eventvenue FROM event where eventid=$eventid";
+                    $result = mysqli_query($con,$query);
+                    while($row = mysqli_fetch_array($result))
+                    {
+                        $p=$row['eventvenue'];
+                        ?>
+								<p><?php echo $p?></p>
+						<?php
+						
+                    }
+                    ?>
+					<?php
+                    $query = "SELECT eventstart,eventend FROM event where eventid=$eventid";
+                    $result = mysqli_query($con,$query);
+                    while($row = mysqli_fetch_array($result))
+                    {
+                        $p=$row['eventstart'];
+                        $q=$row['eventend'];
+                        ?>
+						<p><?php echo $p?>  to  <?php echo $q?></p>
+						<?php
+                    }
+                    ?>
+						<?php
                         $query = "SELECT eventdescdoc FROM event where eventid=$eventid";
                         $result = mysqli_query($con,$query);
                         $row=mysqli_fetch_array($result);
@@ -190,77 +295,18 @@ if(isset($_POST['desc']))
                         {   
                             $add=$row['eventdescdoc'];
                             ?>
-                            <a href=<?php echo $add; ?>><h4>Event Description</h4></a>
+                            <a href=<?php echo $add; ?>><p>Event Description</p></a>
                             <?php
                         }
                         ?>
-                    <form method="post" enctype="multipart/form-data">
-                        <a class="fa fa-upload" id="desc_upload"></a>
-                        <input type="file" name="description" id="description" style="display:none" onchange="Description()" />
-                        <script>$('#desc_upload').click(function(){ $('#description').trigger('click'); });</script>
-                        <input type="submit" name="desc" id="desc" value="Desc" style="display:none"/>
-                    </form>
-                    <h2 style="font-family:'Satisfy', cursive;">Event Timing:</h2>
-                    <?php
-                    $query = "SELECT eventstart,eventend FROM event where eventid=$eventid";
-                    $result = mysqli_query($con,$query);
-                    while($row = mysqli_fetch_array($result))
-                    {
-                        $p=$row['eventstart'];
-                        $q=$row['eventend'];
-                        echo '
-                                <h4 >'.($p).'</h4>
-                                <h4>'.($q).'</h4>
-                        ';
-                    }
-                    ?>
-                    <!-- <h2 style="font-family:'Satisfy', cursive;">Venue:</h2> -->
-                    <br />
-                    <?php
-                    $query = "SELECT eventvenue FROM event where eventid=$eventid";
-                    $result = mysqli_query($con,$query);
-                    while($row = mysqli_fetch_array($result))
-                    {
-                        $p=$row['eventvenue'];
-                        echo '<h4 style="font-style:italic;">'.($p).'</h4>';
-                    }
-                    ?>
-                </div>
-                <div class="col-sm-9" id="participants">
-                <div class="ui toggle checkbox">
-                            <?php
-                                $query2="SELECT * FROM event where eventid=$eventid";
-                                $result2=mysqli_query($con,$query2);
-                                $row2=mysqli_fetch_array($result2);
-                                $privacy=$row2['statue'];
-                            ?>
-                            <br/>
-                            <form method="post">
-                            <input type="checkbox" name="priv" <?php if($privacy) echo "checked";?>  onchange=private()>     
-                            <label>public/private</label>
-                </form>
-                        </div>
-                        <div class="modal fade" id="Modal" role="dialog">
-                            <div class="modal-dialog">
-                        
-                        <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <form method="post"  >
-                                            <a href="" class="close">X</a>
-                                            <h4> Are you sure to commit this change</h4>
-                                            <input type="submit" id="privsub" name="private" style="align:center;">
-                                        </form>
-                                    </div>
-                                </div>
-                        
-                            </div>
-                        </div>  
-                        
-                        <img src="./icons/add_members.png" id="add_mem" data-toggle="modal" data-target="#myModal" >
-                    <h2 id="members"> Participants</h2> 
-                    <br/>   
-                        <?php
+            
+			<form method="post" enctype="multipart/form-data">
+			<input type="file" name="description" id="description" style="display:none" onchange="Description()" />
+			<button type="button" class="btn btn-warning btn-sm" onclick=Func3()>Upload event description</button>
+			<input type="submit" name="desc" id="desc" value="Desc" style="display:none"/>
+            </form>
+			<h1>Participants </h1>
+			<?php
                             $query="SELECT * FROM invitation where eventid=$eventid and current=2";
                             $result=mysqli_query($con,$query);
                             while($row=mysqli_fetch_array($result))
@@ -273,9 +319,8 @@ if(isset($_POST['desc']))
                             <?php    
                             }
                             ?>
-                        <h2 id="invited">Invited</h2> 
-                        <br/>   
-                        <?php
+			<h1>Invited</h1>
+			<?php
                             $query="SELECT * FROM invitation where eventid=$eventid and current=1";
                             $result=mysqli_query($con,$query);
                             while($row=mysqli_fetch_array($result))
@@ -288,7 +333,7 @@ if(isset($_POST['desc']))
                             <?php    
                             }
                             ?>
-                        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
                     <!-- Modal content-->
                         <div class="modal-content">
@@ -348,104 +393,64 @@ if(isset($_POST['desc']))
                         </Td>
                         </tr>
                         </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
                     </div>
                     </div>
                     </div>
-                </div>
-                <div class="modal-container" id="modal">
+					<div class="modal-container" id="modal">
                     <div class="modal">
                         <a href="" class="close">X</a>
                     </div>
                 </div>
-        </div>
-</div>
+				<div class="modal fade" id="Modal" role="dialog">
+                            <div class="modal-dialog">
+                        
+                        <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form method="post"  >
+                                            <a href="" class="close">X</a>
+                                            <h4> Are you sure to commit this change</h4>
+                                            <input type="submit" id="privsub" name="private" style="align:center;">
+                                        </form>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>  
+                        
+		</div>
+    </div>
+</div> <!-- /container -->  
+</body>
+</html>
 
 <script>
-
-function private()
+function Func()
 {
-    $('#privsub').trigger('click');
-}    
-
+	 $('#image').trigger('click');
+}
 function Cover()
 {
     $('#insert').trigger('click');
+}
+function Func1()
+{
+	$('#profile').trigger('click');
 }
 function Profile()
 {
     $('#upload').trigger('click');
 }
+function Func3()
+{
+	$('#description').trigger('click');
+}
 function Description()
 {
     $('#desc').trigger('click');
 }
-$(document).ready(function(){
-    $('#insert').click(function(){
-        var image_name=$('#image').val();
-        if(image_name == '')
-        {
-            alert("Please Select Image");
-            return false;
-        }
-        else
-        {
-            var extension=$('#image').val().split('.').pop().toLowerCase();
-            if(jQuery.inArray(extension,['png','jpg','jpeg']) == -1)
-            {
-                alert("Invalid Image File");
-                $('#image').val('');
-                return false;
-            }
-            else    
-                return true;
-        }
-    });
-    $('#upload').click(function(){
-        var image_name=$('#profile').val();
-        // alert(image_name);
-        if(image_name == '')
-        {
-            alert("Please Select Image");
-            return false;
-        }
-        else
-        {
-            var extension=$('#profile').val().split('.').pop().toLowerCase();
-            // alert(extension);
-            if(jQuery.inArray(extension,['png','jpg','jpeg']) == -1)
-            {
-                alert("Invalid Image File");
-                $('#upload').val('');
-                return false;
-            }
-            else    
-                return true;
-        }
-    });
-    $('#desc').click(function(){
-        var image_name=$('#description').val();
-        // alert(image_name);
-        if(image_name == '')
-        {
-            alert("Please Select File :");
-            return false;
-        }
-        else
-        {
-            var extension=$('#description').val().split('.').pop().toLowerCase();
-            // alert(extension);
-            if(jQuery.inArray(extension,['docs','pdf','docx']) == -1)
-            {
-                alert("Invalid Image File");
-                $('#desc').val('');
-                return false;
-            }
-            else    
-                return true;
-        }
-    });
-});
+function private()
+{
+    $('#privsub').trigger('click');
+} 
 </script>
