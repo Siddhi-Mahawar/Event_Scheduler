@@ -1,30 +1,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <header class="header-sky header-top-sky">
-        <div class="container">
-            <!--HEADER-TOP-->
-            <div class="header-top">
-                <div class="header-top-left">
-                    <span>Motilal Nehru National Institute of Technology</span>
-                    <span><i class="fa fa-phone" aria-hidden="true"></i> 1-548-854-8898</span>
-                </div>
-                <div class="header-top-right">
-                    <ul>
-                        <?php if (isset($user)) {
-                            echo '<li class="dropdown"><a href="home.php" title="Home" class="dropdown-toggle">'. $user .'</a></li>';
-                        }
-                        else 
-                            echo '<li class="dropdown"><a href="login.php" title="Login" class="dropdown-toggle">Log In</a></li>';
-                            ?>
-                        <?php if(isset($user))
-                        echo '<li class="dropdown"><a href="logout.php" title="Logout" class="dropdown-toggle">Log Out</a></li>';
-                        ?>
-                    </ul>
-                </div>
-            </div>
-            <!-- END/HEADER-TOP -->
-        </div>
+	<header class="header-sky header-top-sky">
+       
         <!-- MENU-HEADER -->
         <div class="menu-header">
             <nav class="navbar navbar-fixed-top">
@@ -36,7 +14,7 @@
                             <span class="icon-bar "></span>
                             <span class="icon-bar "></span>
                         </button>
-                        <a class="navbar-brand" href="hom.php" title="Skyline"><img src="home/sky-logo-header.png" alt="#"></a>
+                        <a class="navbar-brand" href="home.php" title="Skyline"><img src="home/sky-logo-header.png" alt="#"></a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -59,40 +37,30 @@
 								echo '<li><a href="requests.php" title="Invitations">Invites</a></li>';
 									}
 							?>
-                            <!-- <li><a href="" title="About">About</a></li> -->
+
+							<!-- <li><a href="" title="About">About</a></li> -->
                             <!-- <li><a href="" title="Contact">Contact</a></li> -->
                             <?php if (isset($user)) {
-								echo '<li><a href="publicevents.php" title="Public events">Events</a></li>';
+								echo '<li><a href="publicevents.php" title="Contact">Events</a></li>';
 								}
 							?>
 							<?php if (isset($user)) {
-								echo '<li><a href="eventreq.php" title="Requests">Requests</a></li>';
+								echo '<li><a href="eventreq.php" title="Contact">Requests</a></li>';
 								}
 							?>
-                            <?php
-                                if(isset($user))
-                                {
-                            ?>
-                            
-                            <?php
-                                }
-                            ?>
+														
                             <?php if (isset($user)) {
-								echo '<li><a href="events.php" title="Events" >'. $user .'</a></li>';
+								echo '<li><a href="events.php" title="Home" >'. $user .'</a></li>';
 							}
                             else 
                             echo '<li ><a href="index.php" title="Login" ">Log In</a></li>';
                             ?>
 							<ul class="nav navbar-nav ">
-                            <li class="dropdown">
-                            <a href="#" class="dropdown-toggle"  id ="notif" data-toggle="dropdown">
-                            <span class="label label-pill label-danger count" style="border-radius:10px;"></span> 
-                            <span class="glyphicon glyphicon-bell" style="font-size:18px;"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                            </ul>
-                            </li>
-                            </ul>
+     <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <span class="glyphicon glyphicon-bell" style="font-size:18px;"></span></a>
+      <ul class="dropdown-menu"></ul>
+     </li>
+    </ul>
                             <?php if(isset($user))
                             echo '<li ><a href="logout.php" title="Logout" >Log Out</a></li>';?>
                         
@@ -103,7 +71,7 @@
         </div>
         <!-- END / MENU-HEADER -->
     </header>
-    <script>
+ <script>
 $(document).ready(function(){
 // updating the view with notifications using ajax
 function load_unseen_notification(view = '')
@@ -124,8 +92,30 @@ function load_unseen_notification(view = '')
  });
 }
 load_unseen_notification();
+// submit form and get new records
+$('#comment_form').on('submit', function(event){
+ event.preventDefault();
+ if($('#subject').val() != '' && $('#comment').val() != '')
+ {
+  var form_data = $(this).serialize();
+  $.ajax({
+   url:"insert.php",
+   method:"POST",
+   data:form_data,
+   success:function(data)
+   {
+    $('#comment_form')[0].reset();
+    load_unseen_notification();
+   }
+  });
+ }
+ else
+ {
+  alert("Both Fields are Required");
+ }
+});
 // load new notifications
-$('#notif').click(function(){
+$(document).on('click', '.dropdown-toggle', function(){
  $('.count').html('');
  load_unseen_notification('yes');
 });
