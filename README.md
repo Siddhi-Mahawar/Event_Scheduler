@@ -2,13 +2,14 @@
 Event scheduling website which allows to create,invite and accept invitations of public/private events.
 ## Getting Started
 1.Clone this repo and unzip in htdocs found under xampp<br>
-2.Run phpMyAdmin and create database and import db from below google drive link 
-## Libraries required
+2.Run phpMyAdmin and create database and import db from the database sql uploaded.
+### Libraries required
 1.Semantics: <br>
 https://github.com/Semantic-Org/Semantic-UI-CSS/archive/master.zip<br>
 2.Materialize: <br>
 https://github.com/Dogfalo/materialize/releases/download/1.0.0/materialize-v1.0.0.zip<br>
 -Unzip these in main folder.
+<br>
 Everything is set Now -->
 Launch browser and to link localhost/Event_Scheduler/home<br>
 3.You can login/sign up from top as user/admin.
