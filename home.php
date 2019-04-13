@@ -23,20 +23,59 @@ include 'header.php';
     background-repeat: no-repeat;
     height:700px;
 }
-.welcome{
-    color:white;
-    font-weight:bold;
-    padding-top:20%;
-    font-size:130%
-}
-@media screen and (max-width:480px){
 
-    .welcome{
-    color:white;
-    font-weight:bold;
-    padding-top:60%;
-    font-size:130%
+#intro {
+  width: 100%;
+  height: 100vh;
+ 
+  overflow: hidden;
+  position: relative;
 }
+
+
+
+#intro .intro-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 50px;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 15px;
+}
+
+#intro h1 {
+  color: #fff;
+  font-family: "Raleway", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#intro h1 span {
+  color: #f82249;
+}
+
+#intro p {
+  color: #ebebeb;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
     .cd{
         padding-left:5.0%;
     }
@@ -46,6 +85,26 @@ include 'header.php';
         padding-top:1.5%;
         padding-left:11%;
     }
+	.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.default {
+  color: black;
+}
+
+.default:hover {
+  background: #e7e7e7;
+}
+#ven
+{
+	padding-left:5.5%;
+}
 </style>
 <body class="land">
     <!-- HEADER -->
@@ -54,17 +113,16 @@ include 'header.php';
     <!-- END / MENU-HEADER -->
     </header>
     <!-- END-HEADER -->
-    <div class="land" >
-    
-        <center>
-
-        <h1 class="welcome">Get Started</h1>
-        <button class="wel">Welcome</button>
-        </center>
+    <section id="intro">
+    <div class="intro-container wow fadeIn">
+      <h1 class="mb-4 pb-0">EVENT SCHEDULER<br><span>GET STARTED</span> </h1>
+     
+     
     </div>
+  </section>
     <!-- OUR-ROOMS-->
     <section class="rooms">
-        <div class="container">
+        <div class="container" id="ven">
             <h2 class="title-room">Our Venues</h2>
             <div class="outline"></div>
             <p class="rooms-p">When you host a party or family reunion, the special celebrations let you streng then bonds with</p>
@@ -162,7 +220,7 @@ include 'header.php';
     <!-- END / ROOMS -->
     
     <section class="rooms">
-        <div class="container">
+        <div class="container" id="ven">
             <h2 class="title-room">Our Events</h2>
             <div class="outline"></div>
             <p class="rooms-p">We Have Organized various Events to thrill the night </p>
@@ -266,20 +324,27 @@ include 'header.php';
                     <div class="about-centent">
                         <h2 class="about-title">About Us</h2>
                         <div class="line"></div>
-                        <p class="about-p">Contrary to popular belief, Lorem isn’t simply random text. It has roots in a of classical Latin literature from 45 BC, making it over 2000 years old. Avalon’s leading hotels with gracious island hospitality, thoughtful amenities and distinctive</p>
-                        <p class="about-p1">Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage ...</p>
-                        <a href="home.php" class="read-more">READ MORE </a>
+                        <p class="about-p">Our web-based scheduler is simple – choose times that work for you and invite others. Registering gives you access to even more scheduling features.</p>
+                        <p class="about-p1">
+						Our features include:
+						<p>•    View available time slots and venues for an event.</p>
+						<p>•	Create an event </p>
+								<p>•	Invite registered users for the event.</p>
+								<p>•	Accept invitations for other events.</p>
+								
+						</p>
+                       
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7 ">
                     <div class="about-img">
                         <div class="img-1">
-                            <img src="./home/about-3.jpg" class="img-responsive" alt="Image">
+                            <img src="./home/about-3.png" class="img-responsive" alt="Image">
                             <div class="img-2">
-                                <img src="./home/about-1.jpg" class="img-responsive" alt="Image">
+                                <img src="./home/meeting.jpg" class="img-responsive" alt="Image">
                             </div>
                             <div class="img-3">
-                                <img src="./home/about2.jpg" class="img-responsive" alt="Image">
+                                <img src="./home/about-2.jpg" class="img-responsive" alt="Image">
                             </div>
                         </div>
                     </div>
@@ -289,51 +354,7 @@ include 'header.php';
     </section>
     <!-- END/ ABOUT-US-->
     <!--FOOTER-->
-    <footer class="footer-sky">
-        <div class="footer-mid">
-            <div class="container">
-                <div class="row padding-footer-mid">
-                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                        <div class="footer-logo text-center list-content">
-                            <a href="home.php#" title="Skyline"><img src="./home/sky-logo-footer.png" alt="Image"></a>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-lg-offset-1 col-md-offset-1  ">
-                        <div class="list-content">
-                            <ul>
-                                <li><a href="home.php#" title="">Site Map</a></li>
-                                <li><a href="home.php#" title="">Term &amp; Conditions</a></li>
-                                <li><a href="home.php#" title="">Privacy Policy</a></li>
-                                <li><a href="home.php#" title="">Help</a></li>
-                                <li><a href="home.php#" title="">Affiliate</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-lg-offset-1 col-md-offset-1 ">
-                        <div class="list-content ">
-                            <ul>
-                                <li><a href="home.php#" title="">Our Location</a></li>
-                                <li><a href="home.php#" title="">Career</a></li>
-                                <li><a href="home.php#" title="">About Us</a></li>
-                                <li><a href="home.php#" title="">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-lg-offset-1 col-md-offset-1">
-                        <div class="list-content ">
-                            <ul>
-                                <li><a href="home.php#" title="">FAQS</a></li>
-                                <li><a href="home.php#" title="">News</a></li>
-                                <li><a href="home.php#" title="">Photo &amp; Video</a></li>
-                                <li><a href="home.php#" title="">Restaurant</a></li>
-                                <li><a href="home.php#" title="">Gift Card</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+   <?php include('footer.php');?>
     <!-- END / FOOTER-->
     <!--SCOLL TOP-->
     <a href="home.php#" title="sroll" class="scrollToTop" style="display: none;"><i class="fa fa-angle-up"></i></a>

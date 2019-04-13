@@ -19,6 +19,7 @@ extract($_SESSION);
 	#space
 	{
 		padding-top:25%;
+		padding-bottom:15%;
 	}
 } 
 
@@ -27,12 +28,14 @@ extract($_SESSION);
 	#space
 	{
 		padding-top:25%;
+		padding-bottom:15%;
 	}
 } 
 @media only screen and (min-width: 768px) {
 	#space
 	{
 		padding-top:20%;
+		padding-bottom:10%;
 	}
 } 
 
@@ -41,6 +44,7 @@ extract($_SESSION);
 	#space
 	{
 		padding-top:20%;
+		padding-bottom:10%;
 	}
 } 
 
@@ -49,6 +53,7 @@ extract($_SESSION);
 	#space
 	{
 		padding-top:20%;
+		padding-bottom:10%;
 	}
 }
 
@@ -179,3 +184,4 @@ used to vertically center elements, may need modification if you're not using de
                         </table></div></div></div></div>
    </div>
 </div>
+<?php include('footer.php');?>
