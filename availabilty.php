@@ -1,22 +1,3 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Siddhi-Mahawar 
-1
-0 0 Siddhi-Mahawar/Event_Scheduler Private
- Code  Issues 1  Pull requests 0  Projects 0  Insights  Settings
-Event_Scheduler/availabilty.php
-@tanishakumbhakar tanishakumbhakar Add files via upload
-5f045e0 an hour ago
-@tanishakumbhakar @nitindoodhiya @Siddhi-Mahawar
-366 lines (311 sloc)  11.4 KB
-    
 <?php include 'config.php';
 session_start();
 extract($_SESSION);
@@ -56,15 +37,56 @@ include 'header.php';
                  `'`;/      `,  }
                     _\       ;  }
   O HAI THERE      /__`;-...'--'
+
 -->
 <style>
 .center{
   color:black;
 }
- #space{
-	
-  padding-top: 5%;
- 
+.det{
+  padding-top:9%;
+}
+.date{
+  width:25%;
+  height:40px;
+  border-color:#202021;
+  border-radius:3px;
+  margin:6px;
+}
+.submit{
+  width:10%;
+  height:40px;
+  background-color:#202021;
+  color:white;
+  border-radius:3px;
+  border-color:#202021;
+}
+.select_ven{
+  
+  width:15%;
+  height:40px;
+  border-color:#202021;
+  border-radius:3px;
+  margin:6px;
+}
+.loc{
+  height:30px;
+  width:20px;
+}
+
+@media screen and (max-width: 600px) {
+  .det{
+    padding-top:20%;
+  }
+  .date{
+    width:63.75%;
+  }
+  .select_ven{
+    width:30%;
+  }
+.submit{
+  width:20%
+}
 }
 @media only screen and (max-width: 600px) {
 	#space
@@ -104,53 +126,9 @@ include 'header.php';
 		padding-bottom:10%;
 	}
 }
-.det{
-  padding-top:9%;
-}
-.date{
-  width:25%;
-  height:40px;
-  border-color:#202021;
-  border-radius:3px;
-  margin:6px;
-}
-.submit{
-  width:10%;
-  height:40px;
-  background-color:#202021;
-  color:white;
-  border-radius:3px;
-  border-color:#202021;
-}
-.select_ven{
-  
-  width:15%;
-  height:40px;
-  border-color:#202021;
-  border-radius:3px;
-  margin:6px;
-}
-.loc{
-  height:30px;
-  width:20px;
-}
-@media screen and (max-width: 600px) {
-  .det{
-    padding-top:20%;
-  }
-  .date{
-    width:63.75%;
-  }
-  .select_ven{
-    width:30%;
-  }
-.submit{
-  width:20%
-}
-}
 </style>
        
-<body>
+<body style="width:100%;height:100%">
 <?php include 'nav.php';?>
 <div id="space">
     <div class="modal-container" id="modal">
@@ -196,14 +174,12 @@ include 'header.php';
   </form>   
 </center>
 
-</body>
-         
 <?php 
 $images=["https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg"];
  extract($_POST);
  if(isset($get))
  {
-   echo $ven;
+
     
     $err="<font color='yellow'>Venue and time slot added</font>"; 
     $que=mysqli_query($con,"select * from venue");
@@ -218,12 +194,14 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     $st_arr[1]=$st_arr[1].$e;
     $_SESSION['start']= $st.$e;
     $_SESSION['end']=$et.$e;
+
     if($et_arr[1]<=$st_arr[1])
       echo "<script>alert(\"Enter End Time Must Be after start time\");</script>";
     echo '<center>';
     echo "<strong ><p style=\"padding:1%\">Start Time: $st - End Time: $et</p><strong>";
     echo'<div class="ui link cards" style="padding-left:5%">';
     $t=0;
+
   // Select venues In given time and Date range
     $hash =[];
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
@@ -243,12 +221,16 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         else
           $hash[$name]=false;
         
+
         // echo $hash[$name].$name;
     }
     $t=0;
     
     //Checking  everyday between given date on that Particular time for every Venue in time time Range By admin
+
+
     // echo $hash['E'];
+
     $que=mysqli_query($con,"select * from venue");
     
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
@@ -260,6 +242,8 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
       
       if($hash[$name]){ 
         
+
+
           $vst_arr = explode(" ",$vst);
           $vet_arr = explode(" ",$vet);
           
@@ -268,6 +252,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
           $vet_arr[1] = str_replace(".000000","",$vet_arr[1]);
          
           $str = $st_arr[0];
+
           while ($str<$et_arr[0]) {
             
             $datetime = new DateTime($str);
@@ -287,6 +272,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
           }
           if($hash[$name]==true)
             $t=1;
+
       }
     }
     
@@ -299,25 +285,29 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
-        $Location=$row['location'];
-        $filepath=$row['image'];
-        $path="admin/".$filepath;
+		$Location=$row['location'];
+		$filepath=$row['image'];
+		$path="admin/".$filepath;
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-		    echo '<img src="'.$path.'">';
+		?>
+		
+       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
+       <?php
+       // echo '<img src="'.$images[$i].'">';
        // $_SESSION['image']=$images[$i];
         echo '</div>';
         echo '<div class="content">';
         echo'<div class="header">'.$name.'</div>';
         echo '<div class="meta">';
-        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a href="https://maps.google.com/?q='.$Location.'">'.$Location.'</a>';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a a href="https://maps.google.com/?q='.$Location.'">'.$Location.'</a>';
         echo '</div>';
         echo '<div class="description">';
         echo 'Matthew is an interior designer living in New York.';
         echo '</div>';
-        echo "
-              <img onclick=\"window.location.href='form.php?ev=$name'\" src='./icons/add.png' style='height:25px;width:25px;' />";
+        echo "<a href='form.php?ev=$name'>
+              <img src='./icons/add.png' style='height:25px;width:25px;' />";
         echo '</div>';
         echo '</div>';
         //$i++;
@@ -325,9 +315,11 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     }
     }  
       
+
+
+
       if($t==0){
         // echo '<center>';
-          
                 echo  '<div class="card">';
                 echo  ' <div class="image">';
                 // echo '<img src="https://materializecss.com/images/sample-1.jpg">';
@@ -341,35 +333,18 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 echo '<div class="description">';
                 echo 'Try Makin other Searches';
                 echo '</div>';
-                // echo "<a href='modal.php?ev=$name'>
+                // echo "<a href='form.php?ev=$name'>
                 //       <img src='./icons/add.png' style='height:25px;width:25px;' />";
                 echo '</div>';
                 // echo '</center>';
                 echo '</div>';
                 
                 echo'</div>';
-                
-    echo "<a  href=\"suggest.php\"><button>Get Realtive Search Result</button></a>";
       }
       echo'</div>';
       echo '</center>';
       
- }
-    ?>
-	</div>
-</html>
-	<?php
-		include('footer.php');
-	?>
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+    }
+    
+?>
+</body>
