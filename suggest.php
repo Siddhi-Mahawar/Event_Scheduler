@@ -340,8 +340,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     
     }
     echo '</div>';
-    echo "<a href='modal.php?ev=$name'>
-          <img src='./icons/add.png' style='height:25px;width:25px;' />";
     echo '</div>';
     echo '</div>';
    
