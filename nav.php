@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <header class="header-sky header-top-sky">
         <div class="container">
             <!--HEADER-TOP-->
@@ -59,15 +62,32 @@
                             <!-- <li><a href="" title="About">About</a></li> -->
                             <!-- <li><a href="" title="Contact">Contact</a></li> -->
                             <?php if (isset($user)) {
-								echo '<li><a href="publicevents.php" title="Contact">Events</a></li>';
+								echo '<li><a href="publicevents.php" title="Public events">Events</a></li>';
 								}
 							?>
 							<?php if (isset($user)) {
-								echo '<li><a href="eventreq.php" title="Contact">Requests</a></li>';
+								echo '<li><a href="eventreq.php" title="Requests">Requests</a></li>';
 								}
 							?>
+                            <?php
+                                if(isset($user))
+                                {
+                            ?>
+                            <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"  id ="notif" data-toggle="dropdown">
+                            <span class="label label-pill label-danger count" style="border-radius:10px;"></span> 
+                            <span class="glyphicon glyphicon-bell" style="font-size:18px;"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            </ul>
+                            </li>
+                            </ul>
+                            <?php
+                                }
+                            ?>
                             <?php if (isset($user)) {
-								echo '<li><a href="events.php" title="Home" >'. $user .'</a></li>';
+								echo '<li><a href="events.php" title="Events" >'. $user .'</a></li>';
 							}
                             else 
                             echo '<li ><a href="index.php" title="Login" ">Log In</a></li>';
@@ -82,3 +102,34 @@
         </div>
         <!-- END / MENU-HEADER -->
     </header>
+    <script>
+$(document).ready(function(){
+// updating the view with notifications using ajax
+function load_unseen_notification(view = '')
+{
+ $.ajax({
+  url:"fetch.php",
+  method:"POST",
+  data:{view:view},
+  dataType:"json",
+  success:function(data)
+  {
+   $('.dropdown-menu').html(data.notification);
+   if(data.unseen_notification > 0)
+   {
+    $('.count').html(data.unseen_notification);
+   }
+  }
+ });
+}
+load_unseen_notification();
+// load new notifications
+$('#notif').click(function(){
+ $('.count').html('');
+ load_unseen_notification('yes');
+});
+setInterval(function(){
+ load_unseen_notification();;
+}, 5000);
+});
+</script>
