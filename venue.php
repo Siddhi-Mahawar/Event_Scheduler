@@ -40,6 +40,52 @@ include 'header.php';
 
 -->
 <style>
+#space{
+	
+  padding-top: 5%;
+ 
+}
+@media only screen and (max-width: 600px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:2%;
+	}
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:2%;
+	}
+} 
+@media only screen and (min-width: 768px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:2%;
+	}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:10%;
+	}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:10%;
+	}
+}
 .center{
   color:black;
 }
@@ -92,19 +138,7 @@ include 'header.php';
        
 <body>
 <?php include 'nav.php';?>
-    <div class="modal-container" id="modal">
-    <div class="modal">
-        <a href="" class="close">X</a>
-        <span class ="modal_heading">
-            Event Details
-        </span>
-        <form method="post" action="modal.php">
-            <input type="text" class="details" placeholder="Event Name" name="eventname" value="<?php echo $eventname;?>"  required /><br>
-            <input type="text" class="details" placeholder="Event Description" name="eventdesc" value="<?php echo $eventdesc;?>" required /><br>
-            <input type="submit" class="btnEvent" value="Add Event" name="addevent">
-        </form>
-    </div>
-</div>
+<div id="space">
 <center>
  <form method="post" class="det">
     <label ><font color='black' style="text-inline:left;">Start time-</font></label>
@@ -202,7 +236,10 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
       $vst = $row['start_time'];
       $vet = $row['end_time'];
       $name = $row['name'];
-     
+     $location=$row['location'];
+        $filepath=$row['image'];
+        $path="admin/".$filepath;
+        
       
       if($hash[$name]){ 
         
@@ -253,19 +290,23 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
+        $location=$row['location'];
+        $filepath=$row['image'];
+        $path="admin/".$filepath;
+        
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-        echo '<img src="'.$images[$i].'">';
-        $_SESSION['image']=$images[$i];
+        echo '<img src="'.$path.'">';
+        $_SESSION['image']=$path;
         echo '</div>';
         echo '<div class="content">';
         echo'<div class="header">'.$name.'</div>';
         echo '<div class="meta">';
-        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a href="https://maps.google.com/?q='.$location.'">'.$location.'</a>';
         echo '</div>';
         echo '<div class="description">';
-        echo 'Matthew is an interior designer living in New York.';
+        echo '';
         echo '</div>';
         echo "<a href='modal.php?ev=$name'>
               <img src='./icons/add.png' style='height:25px;width:25px;' />";
@@ -302,7 +343,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 
                 echo'</div>';
       }
-      echo'</div>';
       echo '</center>';
       
     }
@@ -319,12 +359,17 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $st = $row['start_time'];
         $et = $row['end_time'];
         $name = $row['name'];
-        $location=" ";
+        
+        $location=$row['location'];
+        $filepath=$row['image'];
+        $path="admin/".$filepath;
+        
+            
         $st_arr = explode(".",$st);
         $et_arr = explode(".",$et);
          echo   '<div class="card">
             <div class="image">
-                <img src="'.$images[0].'">
+                <img src="'.$path.'">
             </div>
             <div class="content">
                 <div class="header">'.$name.'</div>
@@ -338,9 +383,14 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
             
         </div>';
     }
-    echo '</center>';
+    echo '</div></div></center>';
 
 
     }
-    ?>
+	?>
+	</div>
 </html>
+
+<?php
+include('footer.php');
+?>
