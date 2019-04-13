@@ -1,3 +1,22 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Siddhi-Mahawar 
+1
+0 0 Siddhi-Mahawar/Event_Scheduler Private
+ Code  Issues 1  Pull requests 0  Projects 0  Insights  Settings
+Event_Scheduler/availabilty.php
+@tanishakumbhakar tanishakumbhakar Add files via upload
+5f045e0 an hour ago
+@tanishakumbhakar @nitindoodhiya @Siddhi-Mahawar
+366 lines (311 sloc)  11.4 KB
+    
 <?php include 'config.php';
 session_start();
 extract($_SESSION);
@@ -37,13 +56,11 @@ include 'header.php';
                  `'`;/      `,  }
                     _\       ;  }
   O HAI THERE      /__`;-...'--'
-
 -->
 <style>
 .center{
   color:black;
 }
-
  #space{
 	
   padding-top: 5%;
@@ -56,7 +73,6 @@ include 'header.php';
 		padding-bottom:2%;
 	}
 } 
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	#space
@@ -72,7 +88,6 @@ include 'header.php';
 		padding-bottom:2%;
 	}
 } 
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	#space
@@ -81,7 +96,6 @@ include 'header.php';
 		padding-bottom:10%;
 	}
 } 
-
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 	#space
@@ -90,7 +104,6 @@ include 'header.php';
 		padding-bottom:10%;
 	}
 }
-
 .det{
   padding-top:9%;
 }
@@ -121,7 +134,6 @@ include 'header.php';
   height:30px;
   width:20px;
 }
-
 @media screen and (max-width: 600px) {
   .det{
     padding-top:20%;
@@ -191,7 +203,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
  extract($_POST);
  if(isset($get))
  {
-
    echo $ven;
     
     $err="<font color='yellow'>Venue and time slot added</font>"; 
@@ -207,14 +218,12 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     $st_arr[1]=$st_arr[1].$e;
     $_SESSION['start']= $st.$e;
     $_SESSION['end']=$et.$e;
-
     if($et_arr[1]<=$st_arr[1])
       echo "<script>alert(\"Enter End Time Must Be after start time\");</script>";
     echo '<center>';
     echo "<strong ><p style=\"padding:1%\">Start Time: $st - End Time: $et</p><strong>";
     echo'<div class="ui link cards" style="padding-left:5%">';
     $t=0;
-
   // Select venues In given time and Date range
     $hash =[];
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
@@ -234,16 +243,12 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         else
           $hash[$name]=false;
         
-
         // echo $hash[$name].$name;
     }
     $t=0;
     
     //Checking  everyday between given date on that Particular time for every Venue in time time Range By admin
-
-
     // echo $hash['E'];
-
     $que=mysqli_query($con,"select * from venue");
     
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
@@ -255,8 +260,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
       
       if($hash[$name]){ 
         
-
-
           $vst_arr = explode(" ",$vst);
           $vet_arr = explode(" ",$vet);
           
@@ -265,7 +268,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
           $vet_arr[1] = str_replace(".000000","",$vet_arr[1]);
          
           $str = $st_arr[0];
-
           while ($str<$et_arr[0]) {
             
             $datetime = new DateTime($str);
@@ -285,7 +287,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
           }
           if($hash[$name]==true)
             $t=1;
-
       }
     }
     
@@ -324,9 +325,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     }
     }  
       
-
-
-
       if($t==0){
         // echo '<center>';
           
@@ -363,3 +361,15 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
 	<?php
 		include('footer.php');
 	?>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
