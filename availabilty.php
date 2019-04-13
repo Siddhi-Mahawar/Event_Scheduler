@@ -43,6 +43,54 @@ include 'header.php';
 .center{
   color:black;
 }
+
+ #space{
+	
+  padding-top: 5%;
+ 
+}
+@media only screen and (max-width: 600px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:2%;
+	}
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:2%;
+	}
+} 
+@media only screen and (min-width: 768px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:2%;
+	}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:10%;
+	}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	#space
+	{
+		padding-top:5%;
+		padding-bottom:10%;
+	}
+}
+
 .det{
   padding-top:9%;
 }
@@ -92,6 +140,7 @@ include 'header.php';
        
 <body>
 <?php include 'nav.php';?>
+<div id="space">
     <div class="modal-container" id="modal">
     <div class="modal">
         <a href="" class="close">X</a>
@@ -249,29 +298,25 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
-		$Location=$row['location'];
-		$filepath=$row['image'];
-		$path="admin/".$filepath;
+        $Location=$row['location'];
+        $filepath=$row['image'];
+        $path="admin/".$filepath;
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-		?>
-		
-       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
-       <?php
-       // echo '<img src="'.$images[$i].'">';
+		    echo '<img src="'.$path.'">';
        // $_SESSION['image']=$images[$i];
         echo '</div>';
         echo '<div class="content">';
         echo'<div class="header">'.$name.'</div>';
         echo '<div class="meta">';
-        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>'.$Location.'</a>';
+        echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a href="https://maps.google.com/?q='.$Location.'">'.$Location.'</a>';
         echo '</div>';
         echo '<div class="description">';
         echo 'Matthew is an interior designer living in New York.';
         echo '</div>';
-        echo "<a href='modal.php?ev=$name'>
-              <img src='./icons/add.png' style='height:25px;width:25px;' />";
+        echo "
+              <img onclick=\"window.location.href='modal.php?ev=$name'\" src='./icons/add.png' style='height:25px;width:25px;' />";
         echo '</div>';
         echo '</div>';
         //$i++;
@@ -284,6 +329,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
 
       if($t==0){
         // echo '<center>';
+          
                 echo  '<div class="card">';
                 echo  ' <div class="image">';
                 // echo '<img src="https://materializecss.com/images/sample-1.jpg">';
@@ -304,11 +350,16 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 echo '</div>';
                 
                 echo'</div>';
+                
+    echo "<a  href=\"suggest.php\"><button>Get Realtive Search Result</button></a>";
       }
       echo'</div>';
       echo '</center>';
       
-    }
-    
+ }
     ?>
+	</div>
 </html>
+	<?php
+		include('footer.php');
+	?>
