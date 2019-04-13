@@ -137,7 +137,7 @@ used to vertically center elements, may need modification if you're not using de
                 <div class="row">
                   
                   <div class="col col-xs-8 text-left">
-                    <button type="button" class="btn btn-lg btn-primary btn-create">List of Events</button>
+                    <button type="button" class="btn btn-lg btn-primary btn-create" disabled = "disabled">List of Events</button>
                   </div>
                 </div>
               </div>
