@@ -236,7 +236,7 @@ if(isset($_POST['desc']))
                             ?>
                             <br/>
                             <form method="post">
-                            <input type="checkbox" name="priv" <?php if($privacy) echo "checked";?> data-toggle="modal" data-target="#Modal">     
+                            <input type="checkbox" name="priv" <?php if($privacy) echo "checked";?>  onchange=private()>     
                             <label>public/private</label>
                 </form>
                         </div>
@@ -249,7 +249,7 @@ if(isset($_POST['desc']))
                                         <form method="post"  >
                                             <a href="" class="close">X</a>
                                             <h4> Are you sure to commit this change</h4>
-                                            <input type="submit" name="private" style="align:center;">
+                                            <input type="submit" id="privsub" name="private" style="align:center;">
                                         </form>
                                     </div>
                                 </div>
@@ -364,7 +364,11 @@ if(isset($_POST['desc']))
 </div>
 
 <script>
-    
+
+function private()
+{
+    $('#privsub').trigger('click');
+}    
 
 function Cover()
 {
