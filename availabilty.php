@@ -304,7 +304,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a a href="https://maps.google.com/?q='.$Location.'">'.$Location.'</a>';
         echo '</div>';
         echo '<div class="description">';
-        echo 'Matthew is an interior designer living in New York.';
+        echo '';
         echo '</div>';
         echo "<a href='form.php?ev=$name'>
               <img src='./icons/add.png' style='height:25px;width:25px;' />";
