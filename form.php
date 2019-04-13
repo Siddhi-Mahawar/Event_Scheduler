@@ -3,9 +3,6 @@ include('config.php');
 session_start();
 extract($_SESSION);
 extract($_GET);
-echo $user;
-echo $start;
-echo $end;
 $errors=array();
 $eventvenue=$_REQUEST['ev'];
 $_SESSION['venue1']=$eventvenue;
@@ -14,7 +11,6 @@ $_SESSION['venue1']=$eventvenue;
    $eventname="";
    $eventdesc="";
    $eventv1=$venue1;
-   echo $eventv1;
    echo '<br />';
    if(isset($_POST['addevent'])){
     $eventname = ($_POST['eventname']);
