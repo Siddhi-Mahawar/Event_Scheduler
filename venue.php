@@ -308,7 +308,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         echo '<div class="description">';
         echo '';
         echo '</div>';
-        echo "<a href='modal.php?ev=$name'>
+        echo "<a href='form.php?ev=$name'>
               <img src='./icons/add.png' style='height:25px;width:25px;' />";
         echo '</div>';
         echo '</div>';
