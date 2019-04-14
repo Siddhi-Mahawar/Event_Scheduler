@@ -98,25 +98,19 @@ echo $sta.$en.$eventvenue;
 <!-- beauty font ROBOTO -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
 <style>
-
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+@import url('https://fonts.googleapis.com/css?family=Margarine');
+@import url('https://fonts.googleapis.com/css?family=Courgette');
 /* Font ROBOTO */
 .roboto{
     font-family: 'Roboto', sans-serif !important; 
 }
-
-/* custom background for panel  */
-.container{ 
-    padding-top: 50px !important;
-    background-color: #f5f5f5 !important;  
-}
-
 /* custom background header panel */
 .custom-header-panel{
     background-color: #004b8e !important;
     border-color: #004b8e !important;
     color: white;
 }
-
 .no-margin-form-group {
     margin: 0 !important;
 }
@@ -124,18 +118,60 @@ echo $sta.$en.$eventvenue;
     color: red;
 }
 .btn-orange-md {
-    background: #FF791F !important;
-    border-bottom: 3px solid #ae4d13 !important;
+    background:#73CC77   !important;
+    border-bottom: 3px solid #3B923F  !important;
     color: white;
 }
-
 .btn-orange-md:hover {
-    background: #d86016 !important;
+    background:  #3B923F !important;
     color: white !important;
+}
+@media only screen and (max-width: 600px) {
+	#space
+	{
+		padding-top:25%;
+		padding-bottom:15%;
+	}
+} 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	#space
+	{
+		padding-top:25%;
+		padding-bottom:15%;
+	}
+} 
+@media only screen and (min-width: 768px) {
+	#space
+	{
+		padding-top:20%;
+		padding-bottom:10%;
+	}
+} 
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#space
+	{
+		padding-top:15%;
+		padding-bottom:10%;
+	}
+} 
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	#space
+	{
+		padding-top:15%;
+		padding-bottom:10%;
+	}
 }
 </style>
 </head>
 <body>
+<?php
+    include 'header.php';
+    include 'nav.php' ?>
+	
+ <div id="space">
 <div class="container">
 <div class="row">
     <div class="col-md-12">
@@ -180,7 +216,7 @@ echo $sta.$en.$eventvenue;
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="submit" class="form-control" name="addevent" id="addevent" value="">
+                                    <input type="submit" class="form-control btn-orange-md" name="addevent" id="addevent" value="SUBMIT">
                                 </div>
                             </div>
                            
@@ -196,6 +232,10 @@ echo $sta.$en.$eventvenue;
     </div>
 </div>
 <!-- Tab panes -->
-</div>
+</div></div>
 
 </body></html>
+<?php
+include('footer.php');
+
+?>
