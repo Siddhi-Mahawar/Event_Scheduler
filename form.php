@@ -39,8 +39,6 @@ $_SESSION['venue1']=$eventvenue;
     $_SESSION['eveid']=$eventid;
     
     //For uploading cover image
-
-
     $name= $_FILES["image"]["name"];
     $dot='.';
     $tmp_name= $_FILES["image"]["tmp_name"];
@@ -58,8 +56,6 @@ $_SESSION['venue1']=$eventvenue;
     {
         echo '<script>alert("Image Inserted into database")</script>';
     }
-
-
     $name= $_FILES["profile"]["name"];
     $dot='.';
     $tmp_name= $_FILES["profile"]["tmp_name"];
@@ -77,7 +73,6 @@ $_SESSION['venue1']=$eventvenue;
     {
         // echo '<script>alert("Image Inserted into database")</script>';
     }
-
     header('location:event_page.php');
     }
 ?>
@@ -104,15 +99,12 @@ $_SESSION['venue1']=$eventvenue;
 .roboto{
     font-family: 'Roboto', sans-serif !important; 
 }
-
-
 /* custom background header panel */
 .custom-header-panel{
     background-color: #004b8e !important;
     border-color: #004b8e !important;
     color: white;
 }
-
 .no-margin-form-group {
     margin: 0 !important;
 }
@@ -124,14 +116,10 @@ $_SESSION['venue1']=$eventvenue;
     border-bottom: 3px solid #3B923F  !important;
     color: white;
 }
-
 .btn-orange-md:hover {
     background:  #3B923F !important;
     color: white !important;
 }
-
-
-
 @media only screen and (max-width: 600px) {
 	#space
 	{
@@ -139,7 +127,6 @@ $_SESSION['venue1']=$eventvenue;
 		padding-bottom:15%;
 	}
 } 
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	#space
@@ -155,7 +142,6 @@ $_SESSION['venue1']=$eventvenue;
 		padding-bottom:10%;
 	}
 } 
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	#space
@@ -164,7 +150,6 @@ $_SESSION['venue1']=$eventvenue;
 		padding-bottom:10%;
 	}
 } 
-
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 	#space
@@ -173,10 +158,6 @@ $_SESSION['venue1']=$eventvenue;
 		padding-bottom:10%;
 	}
 }
-
-
-
-
 </style>
 </head>
 <body>
@@ -248,3 +229,7 @@ $_SESSION['venue1']=$eventvenue;
 </div></div>
 
 </body></html>
+<?php
+include('footer.php');
+
+?>
