@@ -112,7 +112,7 @@ if(isset($_POST['desc']))
     $path= 'Uploads/files/';
     if (!empty($name)){
         if (move_uploaded_file($tmp_name, $path.$eveid.$fileextension)) {
-				echo 'Uploaded!';
+		//echo 'Uploaded!';
         }
     }
     // $file = addslashes(file_get_contents($_FILES["description"]["tmp_name"]));
