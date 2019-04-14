@@ -22,12 +22,13 @@ For admin login with following credentials
 1.After login you are on dashboard  displaying statistics :
 	-Total Registered Users
 	-Total Active Users
-	-Total inactive Users<BR>
+	-Total inactive Users
 2.From navbar select venues
-	-Add New Venue
-	-Update or Delete<br>
+	-Add New Venue and venue details(always give end time greater than the start time).
+	-Update or Delete
 3.From navbar select users
-	-To activate/deactivate users<br>
+	-To activate/deactivate users
+4.Update password option
 
 			
 ## User’s Features:
