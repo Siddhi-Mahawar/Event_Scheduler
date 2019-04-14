@@ -171,13 +171,18 @@ include 'header.php';
     <option>fiugiufg<option>
   </select> -->
   <input class="submit"type="submit" name="get"/>
-  </form>   
+  </form> 
+ <a href="multipleinp2.php">
+ <button class="submit" ><font color="white">Multiple Search</font></button>
+ 
+ </button>
+ </a>
 </center>
 
 <?php 
 $images=["https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg","https://materializecss.com/images/sample-1.jpg"];
  extract($_POST);
- if(isset($get))
+ if(isset($get)) 
  {
 
     
@@ -338,12 +343,15 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 // echo '</center>';
                 echo '</div>';
                 
-                echo'</div>';
+                ;
       }
-      echo'</div>';
+      
       echo '</center>';
       
     }
     
 ?>
-</body>
+</div>
+</body><?php include('footer.php');?>
+
+
