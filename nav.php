@@ -41,11 +41,11 @@
 							<!-- <li><a href="" title="About">About</a></li> -->
                             <!-- <li><a href="" title="Contact">Contact</a></li> -->
                             <?php if (isset($user)) {
-								echo '<li><a href="publicevents.php" title="Contact">Events</a></li>';
+								echo '<li><a href="publicevents.php" title="Public Events">Events</a></li>';
 								}
 							?>
 							<?php if (isset($user)) {
-								echo '<li><a href="eventreq.php" title="Contact">Requests</a></li>';
+								echo '<li><a href="eventreq.php" title="Requests">Requests</a></li>';
 								}
 							?>
 														
