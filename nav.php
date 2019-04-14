@@ -55,12 +55,17 @@
                             else 
                             echo '<li ><a href="index.php" title="Login" ">Log In</a></li>';
                             ?>
+				<?php if(isset($user)){
+				?>
 							<ul class="nav navbar-nav ">
      <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <span class="glyphicon glyphicon-bell" style="font-size:18px;"></span></a>
       <ul class="dropdown-menu"></ul>
      </li>
     </ul>
+				<?php
+				}
+				?>
                             <?php if(isset($user))
                             echo '<li ><a href="logout.php" title="Logout" >Log Out</a></li>';?>
                         
