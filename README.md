@@ -5,7 +5,7 @@ Event scheduling website which allows to create,invite and accept invitations of
 2.Run phpMyAdmin and create database and import db from the database sql uploaded.
 ### Libraries required
 1.Semantics: <br>
-https://github.com/Semantic-Org/Semantic-UI-CSS/archive/master.zip<br>
+https://github.com/Semantic-Org/Semantic-UI-CSS/archive/master.zip<br>After unzipping rename it as Semantic.<br>
 2.Materialize: <br>
 https://github.com/Dogfalo/materialize/releases/download/1.0.0/materialize-v1.0.0.zip<br>
 -Unzip these in main folder.
