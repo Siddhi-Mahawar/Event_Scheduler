@@ -114,8 +114,9 @@ used to vertically center elements, may need modification if you're not using de
 <?php
     include 'header.php';
     include 'nav.php' ?>
+<div id="space">
 <div class="container" >
-   <div class="row" id="space">
+   <div class="row" >
    <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default panel-table">
@@ -183,5 +184,5 @@ used to vertically center elements, may need modification if you're not using de
                         </tr>
                         </table></div></div></div></div>
    </div>
-</div>
+	</div></div>
 <?php include('footer.php');?>
