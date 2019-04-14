@@ -258,11 +258,8 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
          
           $str = $st_arr[0];
 
-          while ($str<$et_arr[0]) {
+          while ($str<=$et_arr[0]) {
             
-            $datetime = new DateTime($str);
-            $datetime->modify('+1 day');
-            $str = $datetime->format('Y-m-d');
             $st_ck=$str." ".$st_arr[1];
             $et_ck=$str." ".$et_arr[1];
             // echo '<br>';
@@ -273,7 +270,9 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
             $qu=mysqli_query($con,$venqu);
             if(mysqli_num_rows($qu) != 0 )
               $hash[$name]=false;
-            
+            $datetime = new DateTime($str);
+            $datetime->modify('+1 day');
+            $str = $datetime->format('Y-m-d');
           }
           if($hash[$name]==true)
             $t=1;
@@ -296,11 +295,10 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         if($hash[$name]){
         echo  '<div class="card">';
         echo  ' <div class="image">';
-		?>
 		
-       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
-       <?php
-       // echo '<img src="'.$images[$i].'">';
+		
+       
+        echo '<img src="'.$path.'">';
        // $_SESSION['image']=$images[$i];
         echo '</div>';
         echo '<div class="content">';
@@ -353,5 +351,4 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
 ?>
 </div>
 </body><?php include('footer.php');?>
-
 
