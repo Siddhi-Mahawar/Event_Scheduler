@@ -41,7 +41,7 @@ For admin login with following credentials
 	-Invite can be send from Event page
 	-user can accept/reject Invitation
 ## ADVANCED FEATURES
-	-google login on login page
+	-google login on login page(google login will function only without proxy)
 	-After creating event user can upload file to describe 
 	-if no venue is available you are provided with relative results (by clicking on button)
 	-user can give multiple inputs if any available it is displayed (first select number of inputs and then fill the fields)
