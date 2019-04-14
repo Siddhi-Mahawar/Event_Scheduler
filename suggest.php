@@ -37,7 +37,6 @@ include 'header.php';
                  `'`;/      `,  }
                     _\       ;  }
   O HAI THERE      /__`;-...'--'
-
 -->
 <style>
 #space{
@@ -52,7 +51,6 @@ include 'header.php';
 		padding-bottom:2%;
 	}
 } 
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	#space
@@ -68,7 +66,6 @@ include 'header.php';
 		padding-bottom:2%;
 	}
 } 
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	#space
@@ -77,7 +74,6 @@ include 'header.php';
 		padding-bottom:10%;
 	}
 } 
-
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 	#space
@@ -119,7 +115,6 @@ include 'header.php';
   height:30px;
   width:20px;
 }
-
 @media screen and (max-width: 600px) {
   .det{
     padding-top:20%;
@@ -202,9 +197,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $Location=$rw['location'];
         $filepath=$rw['image'];
         $path="admin/".$filepath;
-      
-        echo '<script>alert("'.$Location.'")</script>';
-
      $queryven="select * from venue where name = \"$v\" ";
      $err="<font color='yellow'>Venue and time slot added</font>"; 
      $que=mysqli_query($con,$queryven);
@@ -244,7 +236,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
      echo '';
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
     {
-
         $vst = $row['start_time'];
         $vet = $row['end_time'];
         $name = $row['name'];
@@ -279,10 +270,7 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     
         
         //Checking  everyday between given date on that Particular time for every Venue in time time Range By admin
-
-
         // echo $hash['E'];
-
         $queryven="select * from venue where name = \"$v\" ";
         $que=mysqli_query($con,$queryven);
          
@@ -302,7 +290,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         $vet_arr[1] = str_replace(".000000","",$vet_arr[1]);
         
         $str = $st_arr[0];
-
         while ($str<=$et_arr[0]) {
             
             
@@ -338,10 +325,8 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
             $str = $datetime->format('Y-m-d');
             
         }
-
         if($hash[$name]==true)
             $t=1;
-
         }
     
       }
@@ -369,7 +354,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     //     if($hash[$name]){
   
     //    echo '<img src="'.$path.'">';
-
     //   }
     // }
     // }  
