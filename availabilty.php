@@ -326,12 +326,11 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
                 // $_SESSION['image']=$images[$i];
                 echo '</div>';
                 echo '<div class="content">';
-                echo'<div class="header">Sorry!! No Venue Available</div>';
+                echo'<a href="suggest.php"><div class="header">Get Relative Search Result</div></a>';
                 echo '<div class="meta">';
                 // echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>.$Location.</a>';
                 echo '</div>';
                 echo '<div class="description">';
-                echo 'Try Makin other Searches';
                 echo '</div>';
                 // echo "<a href='form.php?ev=$name'>
                 //       <img src='./icons/add.png' style='height:25px;width:25px;' />";
