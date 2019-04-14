@@ -135,35 +135,21 @@ include 'header.php';
 }
 }
 </style>
-       
+<div id="space">
 <body>
 <?php include 'nav.php';?>
-<div id="space">
-    <div class="modal-container" id="modal">
-    <div class="modal">
-        <a href="" class="close">X</a>
-        <span class ="modal_heading">
-            Event Details
-        </span>
-        <form method="post" action="modal.php">
-            <input type="text" class="details" placeholder="Event Name" name="eventname" value="<?php echo $eventname;?>"  required /><br>
-            <input type="text" class="details" placeholder="Event Description" name="eventdesc" value="<?php echo $eventdesc;?>" required /><br>
-            <input type="submit" class="btnEvent" value="Add Event" name="addevent">
-        </form>
-    </div>
-</div>
 <?php 
 $inp;
   extract($_POST);
   if(isset($num)==false){
-    echo '<form method="post" style="padding-top:10%;width:`0pc">
+    echo '<center><form method="post" style="padding-top:10%;width:`0pc">
             <select class="select_ven" name="ninp">';
       for ($i=1; $i <=10 ; ++$i) { 
         echo '<option value="'.$i.'">'.$i.'</option>';
       }
     echo '</select>
     <input class="submit" type="submit" name="num"/>
-    </form>';
+    </form></center>';
   }
 ?>
 <?php
@@ -354,7 +340,9 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     }
  }
     ?>
-	</div>
+
+
+</div>
 </html>
 <?php
 include('footer.php');
