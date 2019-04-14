@@ -204,7 +204,7 @@ if(isset($_POST['desc']))
 			<input type="submit" name="upload" id="upload" value="Upload" style="display:none"/>
              </form>
 			</p>
-		</h1>
+	
 		<?php
                     $query = "SELECT eventname FROM event where eventid=$eventid";
                     $result = mysqli_query($con,$query);
@@ -217,7 +217,7 @@ if(isset($_POST['desc']))
 						<?php
                     }
 		?>
-		<h1><div class="pull-right">
+		<div class="pull-right">
 		<form method="post">						  
 							<?php
                                 $query2="SELECT * FROM event where eventid=$eventid";
@@ -226,7 +226,7 @@ if(isset($_POST['desc']))
                                 $privacy=$row2['statue'];
                             ?>
 							
-							<button type="button" class="btn btn-info btn-lg" style="padding-bottom:2%" onclick=private() >
+							<button type="button" class="btn btn-info btn-lg"  onclick=private() >
 							<?php
 								if($privacy==1)
 								{
@@ -241,9 +241,9 @@ if(isset($_POST['desc']))
 								<?php
 								}								
 								?></button>
-							</form></div></h1>
+							</form></div>
 		
-		<p><div class="pull-right"><button type="button" class="btn btn-danger btn-lg" style="padding-top:2%" id="add_mem" data-toggle="modal" data-target="#myModal">Add participants</button></div></p>
+		<p><div class="pull-right"><button type="button" class="btn btn-danger btn-lg" id="add_mem" data-toggle="modal" data-target="#myModal">Add participants</button></div></p>
 		
 		<?php
 					$query = "SELECT eventdesc FROM event where eventid=$eventid";
