@@ -179,7 +179,6 @@ if(isset($_POST['desc']))
         
 		</div>
         <div class="fb-profile-text">
-		<div class="ui toggle checkbox">
                             <?php
                                 $query2="SELECT * FROM event where eventid=$eventid";
                                 $result2=mysqli_query($con,$query2);
