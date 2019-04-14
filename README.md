@@ -48,3 +48,9 @@ For admin login with following credentials
 	-from the event page user can change privacy (toggle)
 	-if user want to attend the event he can request by 
 	-Notification to all users attending any event under Notification
+
+## Knowledge about some tabs
+	-Invites tab show you the invitations sent by the event craetor
+	-Events tab show you the public events for which request can be send
+	-Requests tab show you the users requesting to attend the event created by you
+	-User email will show you the all the events you are associated with.
