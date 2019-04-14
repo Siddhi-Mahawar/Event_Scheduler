@@ -2,7 +2,7 @@
 Event scheduling website which allows to create,invite and accept invitations of public/private events.
 ## Getting Started
 1.Clone this repo and unzip in htdocs found under xampp<br>
-2.Run phpMyAdmin and create database and import db from the database sql uploaded.
+2.Run phpMyAdmin and create database event_scheduler and import db from the database sql uploaded.
 ### Libraries required
 1.Semantics: <br>
 https://github.com/Semantic-Org/Semantic-UI-CSS/archive/master.zip<br>After unzipping rename it as Semantic.<br>
