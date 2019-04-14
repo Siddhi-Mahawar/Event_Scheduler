@@ -199,8 +199,11 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
     while($rw=mysqli_fetch_array($quer,MYSQLI_ASSOC))
     {
         $v=$rw['name'];
-
-    
+        $Location=$rw['location'];
+        $filepath=$rw['image'];
+        $path="admin/".$filepath;
+      
+        echo '<script>alert("'.$Location.'")</script>';
 
      $queryven="select * from venue where name = \"$v\" ";
      $err="<font color='yellow'>Venue and time slot added</font>"; 
@@ -230,14 +233,15 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
      $hash =[];     $s=0;
      echo  '<div class="card">';
      echo  ' <div class="image">';
+     echo '<img src="'.$path.'">';
      echo '</div>';
      echo '<div class="content">';
      echo'<div class="header">'.$name.'</div>';
      echo '<div class="meta">';
-     echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a>'.$Location.'</a>';
+     echo '<img src="https://image.flaticon.com/icons/svg/67/67347.svg" class="loc"/><a href="https://maps.google.com/?q='.$Location.'">'.$Location.'</a>';
      echo '</div>';
      echo '<div class="description">';
-     echo 'Matthew is an interior designer living in New York.';
+     echo '';
     while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
     {
 
@@ -302,9 +306,6 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
         while ($str<=$et_arr[0]) {
             
             
-            $datetime = new DateTime($str);
-            $datetime->modify('+1 day');
-            $str = $datetime->format('Y-m-d');
             $st_ck=$str." ".$st_arr[1];
             $et_ck=$str." ".$et_arr[1];
             $st_ck=$st_ck.":00:00";
@@ -332,48 +333,46 @@ $images=["https://materializecss.com/images/sample-1.jpg","https://materializecs
      
                      echo "<br>$st_ck to $et_ck";               
                 }
+            $datetime = new DateTime($str);
+            $datetime->modify('+1 day');
+            $str = $datetime->format('Y-m-d');
+            
         }
+
         if($hash[$name]==true)
             $t=1;
 
         }
     
-    }
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+      }
+        echo '</div>';
+        // echo "<a href='modal.php?ev=$name'>
+        //       <img src='./icons/add.png' style='height:25px;width:25px;' />";
+        echo '</div>';
+        echo '</div>';
    
   
   } 
   echo'</div>';
        //Now Display All Available Content Venue
-    if ($t) {
-      $i=0;
-      $que=mysqli_query($con,"select * from venue where name=$v");
-      while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
-      {
-        $vst = $row['start_time'];
-        $vet = $row['end_time'];
-        $name = $row['name'];
-		$Location=$row['location'];
-		$filepath=$row['image'];
-		$path="admin/".$filepath;
-        if($hash[$name]){
-       ?>
-		
-       <img style="border-radius:20px" src="<?php echo $path;?>" width="50%"  />
-       <?php
-       // echo '<img src="'.$images[$i].'">';
-       // $_SESSION['image']=$images[$i];
-         //$i++;
-      }
-    }
-    }  
+    // if ($t) {
       
+    //   $que=mysqli_query($con,"select * from venue where name=$v");
+    //   while( $row = mysqli_fetch_array($que, MYSQLI_ASSOC))
+    //   {
+    //     $vst = $row['start_time'];
+    //     $vet = $row['end_time'];
+    //     $name = $row['name'];
+		// $Location=$row['location'];
+		// $filepath=$row['image'];
+		// $path="admin/".$filepath;
+    //     if($hash[$name]){
+  
+    //    echo '<img src="'.$path.'">';
 
-
-
-      
+    //   }
+    // }
+    // }  
       echo '</center>';
       
     }
